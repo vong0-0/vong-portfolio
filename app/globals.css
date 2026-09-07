@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-xs: 30rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -75,9 +76,9 @@
   --secondary-foreground: oklch(0.145 0 0);
   --muted: oklch(0.938 0.015 85);
   /* #F0ECE2 */
-  --muted-foreground: oklch(0.581 0.010 68);
+  --muted-foreground: oklch(0.581 0.01 68);
   /* #8A887F — text-secondary */
-  --accent: oklch(0.402 0.140 22);
+  --accent: oklch(0.402 0.14 22);
   /* #9E2A2B — accent-secondary (auburn) */
   --accent-foreground: oklch(0.974 0.011 85);
   /* #FAF7F0 */
@@ -105,11 +106,11 @@
   /* #F0ECE2 */
   --portfolio-text-primary: oklch(0.145 0 0);
   /* #1A1A1A */
-  --portfolio-text-secondary: oklch(0.581 0.010 68);
+  --portfolio-text-secondary: oklch(0.581 0.01 68);
   /* #8A887F */
   --portfolio-accent-primary: oklch(0.322 0.055 232);
   /* #2F4858 */
-  --portfolio-accent-secondary: oklch(0.402 0.140 22);
+  --portfolio-accent-secondary: oklch(0.402 0.14 22);
   /* #9E2A2B */
 }
 
@@ -117,13 +118,13 @@
   /* ── Core backgrounds ─────────────────────────────────── */
   --background: oklch(0.155 0.004 265);
   /* #1B1D1F — bg-primary */
-  --foreground: oklch(0.959 0.010 85);
+  --foreground: oklch(0.959 0.01 85);
   /* #F5F2EA — text-primary */
   --card: oklch(0.155 0.004 265);
   /* #1B1D1F */
-  --card-foreground: oklch(0.959 0.010 85);
+  --card-foreground: oklch(0.959 0.01 85);
   --popover: oklch(0.155 0.004 265);
-  --popover-foreground: oklch(0.959 0.010 85);
+  --popover-foreground: oklch(0.959 0.01 85);
   /* ── Accent colors ─────────────────────────────────────── */
   --primary: oklch(0.659 0.065 225);
   /* #7CA0B4 — accent-primary (brightened slate) */
@@ -131,18 +132,18 @@
   /* #1B1D1F */
   --secondary: oklch(0.172 0.004 265);
   /* #202224 — bg-secondary */
-  --secondary-foreground: oklch(0.959 0.010 85);
+  --secondary-foreground: oklch(0.959 0.01 85);
   --muted: oklch(0.172 0.004 265);
   /* #202224 */
   --muted-foreground: oklch(0.638 0.011 68);
   /* #9C988C — text-secondary */
-  --accent: oklch(0.648 0.120 50);
+  --accent: oklch(0.648 0.12 50);
   /* #C97D4F — accent-secondary (copper) */
   --accent-foreground: oklch(0.155 0.004 265);
   /* #1B1D1F */
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.959 0.010 85 / 12%);
-  --input: oklch(0.959 0.010 85 / 15%);
+  --border: oklch(0.959 0.01 85 / 12%);
+  --input: oklch(0.959 0.01 85 / 15%);
   --ring: oklch(0.659 0.065 225);
   /* accent-primary */
   --chart-1: oklch(0.87 0 0);
@@ -151,23 +152,23 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.172 0.004 265);
-  --sidebar-foreground: oklch(0.959 0.010 85);
+  --sidebar-foreground: oklch(0.959 0.01 85);
   --sidebar-primary: oklch(0.659 0.065 225);
   --sidebar-primary-foreground: oklch(0.155 0.004 265);
   --sidebar-accent: oklch(0.172 0.004 265);
-  --sidebar-accent-foreground: oklch(0.959 0.010 85);
-  --sidebar-border: oklch(0.959 0.010 85 / 12%);
+  --sidebar-accent-foreground: oklch(0.959 0.01 85);
+  --sidebar-border: oklch(0.959 0.01 85 / 12%);
   --sidebar-ring: oklch(0.659 0.065 225);
   /* ── Portfolio custom design tokens ───────────────────── */
   --portfolio-bg-secondary: oklch(0.172 0.004 265);
   /* #202224 */
-  --portfolio-text-primary: oklch(0.959 0.010 85);
+  --portfolio-text-primary: oklch(0.959 0.01 85);
   /* #F5F2EA */
   --portfolio-text-secondary: oklch(0.638 0.011 68);
   /* #9C988C */
   --portfolio-accent-primary: oklch(0.659 0.065 225);
   /* #7CA0B4 */
-  --portfolio-accent-secondary: oklch(0.648 0.120 50);
+  --portfolio-accent-secondary: oklch(0.648 0.12 50);
   /* #C97D4F */
 }
 
@@ -185,20 +186,29 @@
   }
 
   button {
-    @apply cursor-pointer
+    @apply cursor-pointer;
+  }
+
+  a {
+    @apply inline-block;
   }
 }
 
 @layer components {
-
   /* ── Dot-grid texture (secondary-background sections only) ── */
   .dot-grid {
-    background-image: radial-gradient(rgba(47, 72, 88, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(
+      rgba(47, 72, 88, 0.06) 1px,
+      transparent 1px
+    );
     background-size: 14px 14px;
   }
 
   .dark .dot-grid {
-    background-image: radial-gradient(rgba(124, 160, 180, 0.10) 1px, transparent 1px);
+    background-image: radial-gradient(
+      rgba(124, 160, 180, 0.1) 1px,
+      transparent 1px
+    );
     background-size: 14px 14px;
   }
 

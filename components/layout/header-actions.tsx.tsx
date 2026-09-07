@@ -35,7 +35,7 @@ export default function HeaderActions() {
     <div className="content-max-width flex items-center justify-center px-6 py-5 sm:px-20">
       <div
         aria-label="Theme preference and resume"
-        className="flex items-center rounded-full border border-border bg-card p-1"
+        className="border-border bg-card flex items-center rounded-full border p-1"
         role="group"
       >
         {themeOptions.map(({ value, label, icon: Icon }, index) => {
@@ -44,12 +44,12 @@ export default function HeaderActions() {
           return (
             <span className="flex items-center" key={value}>
               {index > 0 && (
-                <span aria-hidden="true" className="mx-2 h-5 w-px bg-border" />
+                <span aria-hidden="true" className="bg-border mx-2 h-5 w-px" />
               )}
               <button
                 aria-label={label}
                 aria-pressed={isActive}
-                className={`flex px-1.5 py-1.5 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                className={`focus-visible:ring-ring flex items-center justify-center rounded-full px-1.5 py-1.5 transition-colors focus-visible:ring-2 focus-visible:outline-none ${
                   isActive
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -66,13 +66,13 @@ export default function HeaderActions() {
 
         <div
           aria-hidden="true"
-          className="mx-2 h-5 w-px bg-border"
+          className="bg-border mx-2 h-5 w-px"
           role="separator"
         />
 
         <a
           aria-label="Download resume"
-          className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-ring flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
           download
           href="/resume.pdf"
           title="Download resume"

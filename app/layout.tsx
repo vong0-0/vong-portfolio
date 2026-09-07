@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/top-action-panel";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "500", "700"],
 });
+
+const themeScript = `
+  (function () {
+    var theme = localStorage.getItem("theme");
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  })();
+`;
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,10 +26,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn("h-full", "antialiased", spaceGrotesk.variable, "font-sans")}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
-        {children}</body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

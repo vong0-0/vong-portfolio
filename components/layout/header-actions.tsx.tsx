@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from "react"
-import { Download, Moon, Sun } from "lucide-react"
+import { useEffect, useState } from "react";
+import { Download, Moon, Sun } from "lucide-react";
 
-type Theme = "light" | "dark"
+type Theme = "light" | "dark";
 
 const themeOptions = [
   { value: "light", label: "Light theme", icon: Sun },
   { value: "dark", label: "Dark theme", icon: Moon },
-] as const
+] as const;
 
 function applyTheme(theme: Theme) {
-  document.documentElement.classList.toggle("dark", theme === "dark")
+  document.documentElement.classList.toggle("dark", theme === "dark");
 }
 
-export default function TopActionPanel() {
-  const [theme, setTheme] = useState<Theme | null>(null)
+export default function HeaderActions() {
+  const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("theme")
-    const initialTheme: Theme = savedTheme === "dark" ? "dark" : "light"
+    const savedTheme = window.localStorage.getItem("theme");
+    const initialTheme: Theme = savedTheme === "dark" ? "dark" : "light";
 
-    setTheme(initialTheme)
-    applyTheme(initialTheme)
-  }, [])
+    setTheme(initialTheme);
+    applyTheme(initialTheme);
+  }, []);
 
   function handleThemeChange(nextTheme: Theme) {
-    setTheme(nextTheme)
-    window.localStorage.setItem("theme", nextTheme)
-    applyTheme(nextTheme)
+    setTheme(nextTheme);
+    window.localStorage.setItem("theme", nextTheme);
+    applyTheme(nextTheme);
   }
 
   return (
@@ -39,7 +39,7 @@ export default function TopActionPanel() {
         role="group"
       >
         {themeOptions.map(({ value, label, icon: Icon }, index) => {
-          const isActive = theme === value
+          const isActive = theme === value;
 
           return (
             <span className="flex items-center" key={value}>
@@ -49,7 +49,7 @@ export default function TopActionPanel() {
               <button
                 aria-label={label}
                 aria-pressed={isActive}
-                className={`flex size-9 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                className={`flex px-1.5 py-1.5 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   isActive
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -58,25 +58,29 @@ export default function TopActionPanel() {
                 title={label}
                 type="button"
               >
-                <Icon aria-hidden="true" className="size-3.5 sm:size-4" />
+                <Icon aria-hidden="true" className="size-3 sm:size-3.5" />
               </button>
             </span>
-          )
+          );
         })}
 
-        <div aria-hidden="true" className="mx-2 h-5 w-px bg-border" role="separator" />
+        <div
+          aria-hidden="true"
+          className="mx-2 h-5 w-px bg-border"
+          role="separator"
+        />
 
         <a
           aria-label="Download resume"
-          className="flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           download
           href="/resume.pdf"
           title="Download resume"
         >
           <span>Resume</span>
-          <Download aria-hidden="true" className="size-3.5 sm:size-4" />
+          <Download aria-hidden="true" className="size-3 sm:size-3.5" />
         </a>
       </div>
     </div>
-  )
+  );
 }

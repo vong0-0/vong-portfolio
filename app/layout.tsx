@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/layout/top-action-panel";
+import HeaderActions from "@/components/layout/header-actions.tsx";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -27,13 +27,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("h-full", "antialiased", spaceGrotesk.variable, "font-sans")}
+      className={cn(
+        "h-full",
+        "antialiased",
+        spaceGrotesk.variable,
+        "font-sans",
+      )}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
-        <Navbar />
+        <HeaderActions />
         {children}
       </body>
     </html>

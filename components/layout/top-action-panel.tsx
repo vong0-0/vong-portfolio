@@ -58,7 +58,7 @@ export default function TopActionPanel() {
                 title={label}
                 type="button"
               >
-                <Icon aria-hidden="true" className="size-4" />
+                <Icon aria-hidden="true" className="size-3.5 sm:size-4" />
               </button>
             </span>
           )
@@ -74,7 +74,7 @@ export default function TopActionPanel() {
           title="Download resume"
         >
           <span>Resume</span>
-          <Download aria-hidden="true" className="size-4" />
+          <Download aria-hidden="true" className="size-3.5 sm:size-4" />
         </a>
       </div>
     </div>

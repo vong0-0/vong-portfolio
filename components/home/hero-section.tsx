@@ -1,17 +1,25 @@
-import { Button } from "@base-ui/react";
+import Image from "next/image"
 
 export default function HeroSection() {
+  const name = "Vongsouvan Chanthasone"
+  const profileImage = "/profile-image.png"
+
   return (
-    <div className="w-full h-screen flex items-center">
-      <div className="grid grid-cols-1 auto-rows-auto gap-3.5 content-max-width px-6 py-10">
-        <div className="space-y-3.5">
-          <div className="text-[65px] font-bold text-foreground space-y-[-15px]">
-            <p className="">Hello.</p>
-            <p className="">I'm Vong.</p>
+    <div className="content-max-width border-0.5 border-[#38393C]">
+      <div className="flex flex-col gap-9 items-center justify-center px-6 py-[40px] sm:px-20 sm:pt-20 pb-36.25">
+        <div className="flex flex-col items-center gap-y-2.5">
+          <div className="h-29 w-28.25 overflow-hidden rounded-full grayscale-100">
+            <Image
+              alt="Profile image"
+              className="h-full w-full object-cover"
+              height={116}
+              src={profileImage}
+              width={113}
+            />
           </div>
-          <p className="text-muted-foreground text-lg max-w-[360px]">I'm a Frontend Developer from Laos, building clean and functional web experiences.</p>
+          <p className="font-normal text-sm">{name}</p>
         </div>
-        <Button className="text-background px-4 py-4 rounded-md bg-accent font-medium">Resume</Button>
+        <p className="font-medium text-xl sm:text-2xl max-w-133.5 w-full mx-auto text-center ">I'm a Frontend Developer from Laos, building clean and functional web experiences.</p>
       </div>
     </div>
   )

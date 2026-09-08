@@ -20,15 +20,15 @@ export default function ExprienceSection() {
   return (
     <section
       id="exprience"
-      className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
+      className="relative z-40 border-b-[0.5px] border-solid border-[#38393C]"
     >
-      <div className="content-max-width space-y-6 px-6 py-12">
+      <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 lg:space-y-14">
         <p className="section-header">
           Experience
         </p>
 
-        <div className="relative pl-10 lg:pl-0">
-          <div className="absolute top-0 left-0 h-full w-px translate-x-[8px] bg-foreground lg:left-[228px] lg:translate-x-0"></div>
+        <div className="relative pl-10 lg:mx-auto lg:w-fit lg:pl-0">
+          <div className="absolute top-0 left-0 h-full w-px translate-x-2 bg-foreground lg:left-57 lg:translate-x-0"></div>
           <div className="space-y-8">
             {EXPRIENCES.map(
               ({ year, title, decs }) => (
@@ -37,21 +37,21 @@ export default function ExprienceSection() {
                   key={`${year}-${title}`}
                 >
                   {/* Circle */}
-                  <div className="absolute top-0 -left-10 h-4 w-4 rounded-full bg-foreground lg:left-[220px]"></div>
+                  <div className="absolute top-0 -left-10 h-4 w-4 rounded-full bg-foreground lg:left-55"></div>
 
                   {/* Year */}
-                  <p className="mb-1.5 translate-y-[-25%] text-[13px] text-muted-foreground lg:col-start-1 lg:row-start-1 lg:mb-0 lg:text-right lg:text-[36px] lg:font-medium lg:text-foreground lg:underline lg:underline-offset-4">
+                  <p className="mb-1.5 text-[13px] text-muted-foreground lg:col-start-1 lg:row-start-1 lg:mb-0 lg:translate-y-[-10%] lg:text-right lg:text-[36px] lg:font-medium lg:text-foreground lg:underline lg:underline-offset-4">
                     {year}
                   </p>
 
-                  <div className="lg:col-start-2 lg:row-start-1 lg:pl-8">
+                  <div className="lg:col-start-2 lg:row-start-1 lg:max-w-141.75 lg:pl-8">
                     {/* Title */}
-                    <p className="mb-3 text-base font-bold">
+                    <p className="mb-3 text-base font-medium lg:mb-0 lg:border-2 lg:border-solid lg:border-foreground lg:bg-secondary lg:px-6 lg:py-3 lg:text-[18px]">
                       {title}
                     </p>
 
                     {/* Desc */}
-                    <p className="text-[15px] text-muted-foreground">
+                    <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3">
                       {decs}
                     </p>
                   </div>

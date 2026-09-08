@@ -21,7 +21,7 @@ export default function ProjectSection() {
       className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 xs:pt-20">
-        <p className="text-[28px] md:text-[55px] xs:text-center font-bold text-foreground">
+        <p className="section-header">
           Projects
         </p>
 

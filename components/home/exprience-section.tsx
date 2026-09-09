@@ -44,14 +44,14 @@ export default function ExprienceSection() {
                     {year}
                   </p>
 
-                  <div className="lg:col-start-2 lg:row-start-1 lg:max-w-141.75 lg:pl-8">
+                  <div className="lg:col-start-2 lg:row-start-1 lg:max-w-162.5 lg:pl-8">
                     {/* Title */}
                     <p className="mb-3 text-base font-medium lg:mb-0 lg:border-2 lg:border-solid lg:border-foreground lg:bg-secondary lg:px-6 lg:py-3 lg:text-[18px]">
                       {title}
                     </p>
 
                     {/* Desc */}
-                    <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3">
+                    <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3 lg:text-base">
                       {decs}
                     </p>
                   </div>

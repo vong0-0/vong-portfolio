@@ -1,10 +1,8 @@
 import Image from "next/image";
+import { HERO } from "@/constants";
 import QuickLinkSection from "../layout/quick-link-section";
 
 export default function HeroSection() {
-  const name = "Vongsouvan Chanthasone";
-  const profileImage = "/profile-image.png";
-
   return (
     <section
       id="hero"
@@ -14,15 +12,15 @@ export default function HeroSection() {
         <div className="flex flex-col items-center gap-y-2.5">
           <div className="h-21 w-21 overflow-hidden rounded-full grayscale-100">
             <Image
-              alt="Profile image"
+              alt={HERO.profileImageAlt}
               className="h-full w-full object-cover"
               height={84}
-              src={profileImage}
+              src={HERO.profileImage}
               width={84}
             />
           </div>
           <p className="text-center text-sm font-normal">
-            {name}
+            {HERO.name}
           </p>
         </div>
         <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">

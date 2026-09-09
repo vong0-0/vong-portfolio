@@ -14,7 +14,7 @@ export default function QuickLinkSection() {
       {QUICK_LINKS.map(({ label, href }) => (
         <li
           key={href}
-          className="bg-secondary transition-all duration-150 hover:-translate-y-[10%] hover:!border-l-2 hover:shadow-[0_5px_0_var(--foreground)] active:translate-y-0 active:shadow-none [&:has(+_li:hover)]:border-r-0"
+          className="relative bg-secondary transition-transform duration-150 hover:-translate-y-[10%] hover:!border-l-2 active:translate-y-0 [&:has(+_li:hover)]:border-r-0 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-[-5px] after:h-[5px] after:bg-foreground after:opacity-0 after:transition-opacity after:duration-150 hover:after:opacity-100 active:after:opacity-0"
         >
           <Link
             href={href}

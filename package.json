@@ -10,12 +10,9 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
-    "@hugeicons/core-free-icons": "^4.3.0",
-    "@hugeicons/react": "^1.1.10",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.5",
     "lucide-react": "^1.41.0",
-    "motion": "^13.2.0",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -35,5 +32,12 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.11.1"
+  "packageManager": "pnpm@10.11.1",
+  "browserslist": [
+    "chrome >= 109",
+    "edge >= 109",
+    "firefox >= 109",
+    "safari >= 15.6",
+    "ios_saf >= 15.6"
+  ]
 }

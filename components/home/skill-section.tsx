@@ -14,7 +14,7 @@ export default function SkillSection() {
           {SKILL_ICONS.map(
             ({ name, color, href, Icon }) => (
               <Link
-                className="flex w-full max-w-90 flex-col items-center gap-3 border-2 border-t-0 border-solid border-foreground bg-background px-6 py-3 first:border-t-2 xs:max-w-full xs:border-2 xs:transition-all xs:duration-150 xs:hover:-translate-y-2 xs:hover:shadow-[0_8px_0_var(--foreground)] xs:active:translate-y-0 xs:active:shadow-none md:max-w-50"
+                className="relative flex w-full max-w-90 flex-col items-center gap-3 border-2 border-t-0 border-solid border-foreground bg-background px-6 py-3 first:border-t-2 xs:max-w-full xs:border-2 xs:transition-transform xs:duration-150 xs:hover:-translate-y-2 xs:active:translate-y-0 md:max-w-50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-[-8px] after:h-[8px] after:bg-foreground after:opacity-0 after:transition-opacity after:duration-150 xs:hover:after:opacity-100 xs:active:after:opacity-0"
                 href={href}
                 key={name}
                 rel="noreferrer"

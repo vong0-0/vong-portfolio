@@ -80,10 +80,10 @@ export default function HeaderActions() {
                 <button
                   aria-label={label}
                   aria-pressed={isActive}
-                  className={`flex items-center justify-center rounded-full px-1.5 py-1.5 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
+                  className={`flex items-center justify-center rounded-full px-1.5 py-1.5 text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
                     isActive
                       ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      : "hover:bg-muted hover:text-foreground"
                   }`}
                   onClick={() =>
                     handleThemeChange(value)
@@ -109,7 +109,7 @@ export default function HeaderActions() {
 
         <a
           aria-label="Download resume"
-          className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           download
           href="/resume.pdf"
           title="Download resume"

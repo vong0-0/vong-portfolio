@@ -7,13 +7,13 @@ import SkillSection from "@/components/home/skill-section";
 
 export default function Page() {
   return (
-    <div>
+    <>
       <HeroSection />
       <ProjectSection />
       <ExprienceSection />
       <SkillSection />
       <AboutSection />
       <ContactSection />
-    </div>
+    </>
   );
 }

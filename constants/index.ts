@@ -12,13 +12,53 @@ import {
   TypeScriptIcon,
   ViteIcon,
 } from "@/components/icons/skill-icons";
-import { Moon, Sun } from "lucide-react";
+import {
+  Globe,
+  Mail,
+  Moon,
+  Phone,
+  Sun,
+} from "lucide-react";
 
 export const HERO = {
   name: "Vongsouvan Chanthasone",
   profileImage: "/profile-image.png",
   profileImageAlt: "Vongsouvan Chanthasone",
 } as const;
+
+export const ABOUT = [
+  "Hi, I'm Vongsouvan Chanthasone",
+  "I'm a frontend developer based in Laos. I got into web dev because I like turning messy ideas into something people can actually click around and use.",
+  "Along the way, I got to compete at WorldSkills ASEAN, which pushed me to build faster and think clearer under pressure.",
+  "These days I'm mostly working with React and Next.js, and always looking for the next thing to figure out.",
+] as const;
+
+export const CONTACT_DETAILS = [
+  {
+    label: "Phone",
+    value: "+8562012345678",
+    href: "tel:+8562012345678",
+    Icon: Phone,
+  },
+  {
+    label: "Email",
+    value: "vongsouvan09@gmail.com",
+    href: "mailto:vongsouvan09@gmail.com",
+    Icon: Mail,
+  },
+  {
+    label: "GitHub",
+    value: "github.com/vong0-0",
+    href: "https://github.com/vong0-0",
+    Icon: GitHubIcon,
+  },
+  {
+    label: "Website",
+    value: "vongsouvan.com",
+    href: "https://vongsouvan.com",
+    Icon: Globe,
+  },
+] as const;
 
 export const PROJECTS = [
   {

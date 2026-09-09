@@ -21,7 +21,7 @@ export default function ProjectSection() {
       id="projects"
       className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
     >
-      <div className="content-max-width space-y-6 px-6 py-12 xs:pt-20 md:space-y-10 lg:space-y-14">
+      <div className="content-max-width space-y-6 px-6 py-12 xs:pt-20 md:space-y-10 md:pb-20 lg:space-y-14">
         <p className="section-header">Projects</p>
 
         {/* Project cards */}

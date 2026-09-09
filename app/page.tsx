@@ -1,3 +1,5 @@
+import AboutSection from "@/components/home/about-section";
+import ContactSection from "@/components/home/contact-section";
 import HeroSection from "@/components/home/hero-section";
 import ProjectSection from "@/components/home/projects-section";
 import ExprienceSection from "@/components/home/exprience-section";
@@ -10,6 +12,8 @@ export default function Page() {
       <ProjectSection />
       <ExprienceSection />
       <SkillSection />
+      <AboutSection />
+      <ContactSection />
     </div>
   );
 }

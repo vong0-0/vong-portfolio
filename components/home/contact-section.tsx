@@ -2,6 +2,7 @@
 
 import { CONTACT_DETAILS } from "@/constants";
 import { Check, Copy } from "lucide-react";
+import { motion } from "motion/react";
 import {
   useEffect,
   useRef,
@@ -49,18 +50,24 @@ export default function ContactSection() {
       className="dot-grid bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20 md:pb-5">
-        <h2 className="section-header text-left xs:text-left">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="section-header text-left xs:text-left"
+        >
           Contact
-        </h2>
+        </motion.h2>
 
         <div className="grid gap-4 md:grid-cols-2">
           {CONTACT_DETAILS.map(
-            ({ label, value, Icon }) => {
+            ({ label, value, Icon }, index) => {
               const isCopied =
                 copiedLabel === label;
 
               return (
-                <button
+                <motion.button
                   aria-label={`Copy ${label}`}
                   className="group flex items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   onClick={() =>
@@ -68,6 +75,14 @@ export default function ContactSection() {
                   }
                   key={label}
                   type="button"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.45,
+                    delay: index * 0.08,
+                    ease: "easeOut",
+                  }}
+                  viewport={{ once: true, amount: 0.2 }}
                 >
                   {isCopied ? (
                     <Check
@@ -96,7 +111,7 @@ export default function ContactSection() {
                         : value}
                     </p>
                   </div>
-                </button>
+                </motion.button>
               );
             },
           )}
@@ -108,9 +123,15 @@ export default function ContactSection() {
             : ""}
         </p>
 
-        <p className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-6 text-center text-xs text-muted-foreground"
+        >
           © 2026 Vong Souvan. All rights reserved.
-        </p>
+        </motion.p>
       </div>
     </section>
   );

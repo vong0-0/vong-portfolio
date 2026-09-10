@@ -6,6 +6,7 @@ import {
   Moon,
   Sun,
 } from "lucide-react";
+import { motion } from "motion/react";
 
 type Theme = "light" | "dark";
 
@@ -53,7 +54,23 @@ export default function HeaderActions() {
   }
 
   return (
-    <div className="content-max-width flex items-center justify-center px-6 py-5 sm:px-20">
+    <motion.div
+      initial={{
+        opacity: 0,
+        transform: "translateY(-30%)",
+      }}
+      whileInView={{
+        opacity: 1,
+        transform: "translateY(0%)",
+      }}
+      viewport={{
+        once: true,
+      }}
+      transition={{
+        duration: 0.5,
+      }}
+      className="content-max-width flex items-center justify-center px-6 py-5 sm:px-20"
+    >
       <div
         aria-label="Theme preference and resume"
         className="flex items-center rounded-full border border-border bg-card p-1"
@@ -121,6 +138,6 @@ export default function HeaderActions() {
           />
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }

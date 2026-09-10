@@ -22,7 +22,7 @@ import {
 
 export const HERO = {
   name: "Vongsouvan Chanthasone",
-  profileImage: "/profile-image.png",
+  profileImage: "/images/profile-image.png",
   profileImageAlt: "Vongsouvan Chanthasone",
 } as const;
 

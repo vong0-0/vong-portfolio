@@ -1,13 +1,6 @@
+import { QUICK_LINKS } from "@/constants";
 import Link from "next/link";
 import { motion } from "motion/react";
-
-export const QUICK_LINKS = [
-  { label: "Projects", href: "#projects" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "Skills", href: "#skills" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-] as const;
 
 export default function QuickLinkSection() {
   return (

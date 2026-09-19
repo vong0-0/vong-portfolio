@@ -37,25 +37,21 @@ export const CONTACT_DETAILS = [
   {
     label: "Phone",
     value: "+8562012345678",
-    href: "tel:+8562012345678",
     Icon: Phone,
   },
   {
     label: "Email",
     value: "vongsouvan09@gmail.com",
-    href: "mailto:vongsouvan09@gmail.com",
     Icon: Mail,
   },
   {
     label: "GitHub",
     value: "github.com/vong0-0",
-    href: "https://github.com/vong0-0",
     Icon: GitHubIcon,
   },
   {
     label: "Website",
     value: "vongsouvan.com",
-    href: "https://vongsouvan.com",
     Icon: Globe,
   },
 ] as const;

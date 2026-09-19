@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import {
-  Download,
   Moon,
   Sun,
+  User,
 } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 type Theme = "light" | "dark";
 
@@ -124,19 +125,17 @@ export default function HeaderActions() {
           role="separator"
         />
 
-        <a
-          aria-label="Download resume"
+        <Link
           className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-          download
-          href="/resume.pdf"
+          href="#contact"
           title="Download resume"
         >
-          <span>Resume</span>
-          <Download
+          <span>Contact</span>
+          <User
             aria-hidden="true"
             className="size-3 sm:size-3.5"
           />
-        </a>
+        </Link>
       </div>
     </motion.div>
   );

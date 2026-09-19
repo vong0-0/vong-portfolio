@@ -3,7 +3,6 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import HeaderActions from "@/components/layout/header-actions.tsx";
-import { motion } from "motion/react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],

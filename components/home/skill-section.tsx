@@ -8,7 +8,7 @@ import type { CSSProperties } from "react";
 export default function SkillSection() {
   return (
     <section
-      id="projects"
+      id="skills"
       className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20">

@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local project documentation
+PROJECT_STRUCTURE.md
+
 # vercel
 .vercel
 

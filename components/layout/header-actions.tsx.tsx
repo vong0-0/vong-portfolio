@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import {
   Moon,
   Sun,
@@ -31,27 +31,38 @@ function applyTheme(theme: Theme) {
   );
 }
 
+function subscribeToTheme(onChange: () => void) {
+  window.addEventListener("themechange", onChange);
+
+  return () => {
+    window.removeEventListener("themechange", onChange);
+  };
+}
+
+function getThemeSnapshot(): Theme {
+  return document.documentElement.classList.contains("dark")
+    ? "dark"
+    : "light";
+}
+
+function getServerThemeSnapshot(): Theme {
+  return "light";
+}
+
 export default function HeaderActions() {
-  const [theme, setTheme] =
-    useState<Theme | null>(null);
-
-  useEffect(() => {
-    const savedTheme =
-      window.localStorage.getItem("theme");
-    const initialTheme: Theme =
-      savedTheme === "dark" ? "dark" : "light";
-
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
 
   function handleThemeChange(nextTheme: Theme) {
-    setTheme(nextTheme);
     window.localStorage.setItem(
       "theme",
       nextTheme,
     );
     applyTheme(nextTheme);
+    window.dispatchEvent(new Event("themechange"));
   }
 
   return (
@@ -73,7 +84,7 @@ export default function HeaderActions() {
       className="content-max-width flex items-center justify-center px-6 py-5 sm:px-20"
     >
       <div
-        aria-label="Theme preference and resume"
+        aria-label="Theme preference and contact"
         className="flex items-center rounded-full border border-border bg-card p-1"
         role="group"
       >
@@ -128,7 +139,7 @@ export default function HeaderActions() {
         <Link
           className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           href="#contact"
-          title="Download resume"
+          title="Contact"
         >
           <span>Contact</span>
           <User

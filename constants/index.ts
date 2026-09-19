@@ -15,9 +15,7 @@ import {
 import {
   Globe,
   Mail,
-  Moon,
   Phone,
-  Sun,
 } from "lucide-react";
 
 export const HERO = {
@@ -61,12 +59,12 @@ export const PROJECTS = [
     title:
       "Receipt Scanner & Financial Dashboard",
     desc: "AI-powered receipt scanner that extracts expense details from a photo and visualizes spending on a dashboard with Lao language and Kip currency support.",
-    repo: "#",
+    repo: "https://github.com/vong0-0/receipt-scanner.git",
   },
   {
     title: "TonNam Smart Restaurant System",
     desc: "A full-stack restaurant platform connecting admins, cashiers, waiters, and kitchen staff — handling orders, real-time kitchen updates, billing, and analytics in one system.",
-    repo: "#",
+    repo: "https://github.com/vong0-0/tonnam-system.git",
   },
 ] as const;
 
@@ -95,22 +93,6 @@ export const QUICK_LINKS = [
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
-
-export const THEME_OPTIONS = [
-  {
-    value: "light",
-    label: "Light theme",
-    icon: Sun,
-  },
-  {
-    value: "dark",
-    label: "Dark theme",
-    icon: Moon,
-  },
-] as const;
-
-export type Theme =
-  (typeof THEME_OPTIONS)[number]["value"];
 
 export const SKILL_ICONS = [
   {

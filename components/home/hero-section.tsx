@@ -34,7 +34,7 @@ export default function HeroSection() {
           </p>
         </div>
         <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">
-          I'm a Frontend Developer from Laos,
+          I&apos;m a Frontend Developer from Laos,
           building clean and functional web
           experiences.
         </p>

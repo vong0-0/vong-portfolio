@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { SITE_URL } from "@/lib/site-url";
 import HeaderActions from "@/components/layout/header-actions.tsx";
 
 const spaceGrotesk = Space_Grotesk({
@@ -18,6 +19,7 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Vongsouvan Chanthasone",
   description:
     "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design.",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     title: "Vongsouvan Chanthasone",
     description:
       "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design.",
-    url: "https://vongsouvan.com",
+    url: SITE_URL,
     siteName: "Vongsouvan Chanthasone",
     images: [
       {

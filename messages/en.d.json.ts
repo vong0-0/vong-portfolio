@@ -2,6 +2,13 @@
 // See: https://next-intl.dev/docs/workflows/typescript#messages-arguments
 
 declare const messages: {
+  "HeaderActions": {
+    "groupLabel": "Theme preference and language",
+    "lightTheme": "Light theme",
+    "darkTheme": "Dark theme",
+    "changeLanguage": "Language",
+    "changeLanguageLabel": "Change language"
+  },
   "HomePage": {
     "Hero": {
       "tagline": "I''m a Frontend Developer from Laos, building clean and functional web experiences."

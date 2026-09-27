@@ -69,12 +69,12 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col">
-        <HeaderActions />
-        <main>
-          <NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <HeaderActions />
+          <main>
             {children}
-          </NextIntlClientProvider>
-        </main>
+          </main>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -7,7 +7,8 @@ import SkillSection from "@/components/home/skill-section";
 import { useTranslations } from "next-intl";
 
 export default function Page() {
-    const t = useTranslations('HomePage')
+  const t = useTranslations("HomePage");
+
   return (
     <>
       <HeroSection />

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: LayoutProps<"/[local]">) {
+}: LayoutProps<"/[locale]">) {
   return (
     <html
       lang="en"

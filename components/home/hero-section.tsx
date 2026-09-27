@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { HERO } from "@/constants";
 import QuickLinkSection from "../layout/quick-link-section";
+import { useTranslations } from "next-intl";
 
 export default function HeroSection() {
+  const t = useTranslations("HomePage.Hero");
   return (
     <section
       id="hero"
@@ -24,9 +26,7 @@ export default function HeroSection() {
           </p>
         </div>
         <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">
-          I'm a Frontend Developer from Laos,
-          building clean and functional web
-          experiences.
+          {t("tagline")}
         </p>
       </div>
 

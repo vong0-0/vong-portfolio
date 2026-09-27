@@ -1,35 +1,28 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const PROJECTS = [
-  {
-    title:
-      "Receipt Scanner & Financial Dashboard",
-    desc: "AI-powered receipt scanner that extracts expense details from a photo and visualizes spending on a dashboard with Lao language and Kip currency support.",
-    repo: "#",
-  },
-  {
-    title: "TonNam Smart Restaurant System",
-    desc: "A full-stack restaurant platform connecting admins, cashiers, waiters, and kitchen staff — handling orders, real-time kitchen updates, billing, and analytics in one system.",
-    repo: "#",
-  },
-];
+  { key: "receiptScanner", repo: "#" },
+  { key: "tonnam", repo: "#" },
+] as const;
 
 export default function ProjectSection() {
+  const t = useTranslations("HomePage.Projects");
   return (
     <section
       id="projects"
       className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 xs:pt-20 md:space-y-10 md:pb-20 lg:space-y-14">
-        <p className="section-header">Projects</p>
+        <p className="section-header">{t("header")}</p>
 
         {/* Project cards */}
         <div className="flex flex-col gap-6">
           {PROJECTS.map(
-            ({ title, desc, repo }, index) => (
+            ({ key, repo }, index) => (
               <div
-                key={title}
+                key={key}
                 className={`mx-auto flex flex-col xs:max-w-125 md:max-w-full md:flex-row ${
                   index % 2 !== 0
                     ? "md:flex-row-reverse"
@@ -51,19 +44,19 @@ export default function ProjectSection() {
                 >
                   {/* Project title */}
                   <p className="mb-4 text-xl font-medium lg:text-2xl">
-                    {title}
+                    {t(`items.${key}.title`)}
                   </p>
 
                   {/* Project description */}
                   <p className="mb-4.5 text-[15px] text-muted-foreground lg:text-base">
-                    {desc}
+                    {t(`items.${key}.desc`)}
                   </p>
                   <Link
                     href={repo}
                     className="group flex items-center gap-1"
                   >
                     <span className="text-[15px] underline underline-offset-2 transition-all duration-300 group-hover:text-muted-foreground lg:text-base">
-                      View repo
+                      {t("viewRepo")}
                     </span>
                     <span className="transition-all duration-300 group-hover:translate-x-[20%] group-hover:text-muted-foreground">
                       <ArrowRight className="size-4.5" />
@@ -78,3 +71,4 @@ export default function ProjectSection() {
     </section>
   );
 }
+

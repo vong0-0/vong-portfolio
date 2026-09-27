@@ -1,14 +1,17 @@
 import { SKILL_ICONS } from "@/constants";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function SkillSection() {
+  const t = useTranslations("HomePage.Skills");
+
   return (
     <section
       id="projects"
       className="relative z-40 border-b-[0.5px] border-solid border-[#38393C] bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20">
-        <p className="section-header">Skills</p>
+        <p className="section-header">{t("header")}</p>
 
         <div className="flex flex-col items-center justify-center xs:grid xs:auto-rows-auto xs:grid-cols-2 xs:gap-4 md:flex md:flex-row md:flex-wrap">
           {SKILL_ICONS.map(

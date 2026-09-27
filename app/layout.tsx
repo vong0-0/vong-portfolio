@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import HeaderActions from "@/components/layout/header-actions.tsx";
+import { NextIntlClientProvider } from "next-intl";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -69,7 +70,11 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-full flex-col">
         <HeaderActions />
-        <main>{children}</main>
+        <main>
+          <NextIntlClientProvider>
+            {children}
+          </NextIntlClientProvider>
+        </main>
       </body>
     </html>
   );

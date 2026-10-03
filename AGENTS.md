@@ -146,9 +146,9 @@ The cards alternate image/content placement on desktop and stack on smaller scre
 
 1. Dev Tour Laos — Programming Contest (2025)
 2. WorldSkills ASEAN Manila 2025 (2025)
-3. Internship — Lailaolab (2025)
+3. Internship — Lailaolab ICT Solution (2025)
 
-Each item currently has a year, title, description, animated timeline dot, and animated entry.
+Each item has a linked title that opens its external website in a new tab, a year, description, animated timeline dot, and animated entry.
 
 Do not add third-party organization logos or badges without explicit approval.
 

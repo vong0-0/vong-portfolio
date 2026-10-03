@@ -10,6 +10,12 @@ import {
   useState,
 } from "react";
 import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/shared/tooltip";
 
 type ContactLabelKey =
   (typeof CONTACT_DETAILS)[number]["labelKey"];
@@ -80,76 +86,91 @@ export default function ContactSection() {
           {t("header")}
         </motion.h2>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {CONTACT_DETAILS.map(
-            ({ labelKey, value, Icon }, index) => {
-              const label = t(`labels.${labelKey}`);
-              const isCopied =
-                copiedLabel === labelKey;
+        <TooltipProvider>
+          <div className="grid gap-4 md:grid-cols-2">
+            {CONTACT_DETAILS.map(
+              ({ labelKey, value, Icon }, index) => {
+                const label = t(`labels.${labelKey}`);
+                const isCopied =
+                  copiedLabel === labelKey;
 
-              return (
-                <motion.button
-                  aria-label={t("copy", { label })}
-                  className="group flex items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                  onClick={() =>
-                    handleCopy(labelKey, value)
-                  }
-                  key={labelKey}
-                  type="button"
-                  initial={
-                    skipEntranceAnimations
-                      ? false
-                      : { opacity: 0, y: 24 }
-                  }
-                  animate={
-                    skipEntranceAnimations
-                      ? { opacity: 1, y: 0 }
-                      : undefined
-                  }
-                  whileInView={
-                    skipEntranceAnimations
-                      ? undefined
-                      : { opacity: 1, y: 0 }
-                  }
-                  transition={{
-                    duration: 0.45,
-                    delay: index * 0.08,
-                    ease: "easeOut",
-                  }}
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  {isCopied ? (
-                    <Check
-                      aria-hidden="true"
-                      className="size-5 shrink-0 text-primary"
+                return (
+                  <Tooltip key={labelKey}>
+                    <TooltipTrigger
+                      render={
+                        <motion.button
+                          aria-label={t("copy", { label })}
+                          className="group flex items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                          onClick={() =>
+                            handleCopy(labelKey, value)
+                          }
+                          type="button"
+                          initial={
+                            skipEntranceAnimations
+                              ? false
+                              : { opacity: 0, y: 24 }
+                          }
+                          animate={
+                            skipEntranceAnimations
+                              ? { opacity: 1, y: 0 }
+                              : undefined
+                          }
+                          whileInView={
+                            skipEntranceAnimations
+                              ? undefined
+                              : { opacity: 1, y: 0 }
+                          }
+                          transition={{
+                            duration: 0.45,
+                            delay: index * 0.08,
+                            ease: "easeOut",
+                          }}
+                          viewport={{
+                            once: true,
+                            amount: 0.2,
+                          }}
+                        >
+                          {isCopied ? (
+                            <Check
+                              aria-hidden="true"
+                              className="size-5 shrink-0 text-primary"
+                            />
+                          ) : (
+                            <>
+                              <Copy
+                                aria-hidden="true"
+                                className="hidden size-5 shrink-0 group-hover:block group-focus-visible:block"
+                              />
+                              <Icon
+                                aria-hidden="true"
+                                className="size-5 shrink-0 group-hover:hidden group-focus-visible:hidden"
+                              />
+                            </>
+                          )}
+                          <div>
+                            <p className="text-xs text-muted-foreground">
+                              {label}
+                            </p>
+                            <p className="font-medium">
+                              {isCopied
+                                ? t("copied")
+                                : value}
+                            </p>
+                          </div>
+                        </motion.button>
+                      }
                     />
-                  ) : (
-                    <>
-                      <Copy
-                        aria-hidden="true"
-                        className="hidden size-5 shrink-0 group-hover:block group-focus-visible:block"
-                      />
-                      <Icon
-                        aria-hidden="true"
-                        className="size-5 shrink-0 group-hover:hidden group-focus-visible:hidden"
-                      />
-                    </>
-                  )}
-                  <div>
-                    <p className="text-xs text-muted-foreground">
-                      {label}
-                    </p>
-                    <p className="font-medium">
+                    <TooltipContent>
                       {isCopied
                         ? t("copied")
-                        : value}
-                    </p>
-                  </div>
-                </motion.button>
-              );
-            },
-          )}
-        </div>
+                        : t("copy", { label })}
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              },
+            )}
+          </div>
+        </TooltipProvider>
 
         <p aria-live="polite" className="sr-only">
           {copiedLabel

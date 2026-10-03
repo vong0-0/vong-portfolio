@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { hasLocale } from "next-intl";
 import {
   Space_Grotesk,
@@ -67,12 +68,17 @@ export default async function RootLayout({
     notFound();
   }
 
+  const cookieStore = await cookies();
+  const savedTheme = cookieStore.get("theme")?.value;
+  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+
   return (
     <html
       lang={locale}
       suppressHydrationWarning
       className={cn(
         "h-full",
+        initialTheme === "dark" && "dark",
         "antialiased",
         spaceGrotesk.variable,
         notoSansLao.variable,
@@ -81,7 +87,7 @@ export default async function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider locale={locale}>
-          <HeaderActions />
+          <HeaderActions initialTheme={initialTheme} />
           <main>{children}</main>
         </NextIntlClientProvider>
       </body>

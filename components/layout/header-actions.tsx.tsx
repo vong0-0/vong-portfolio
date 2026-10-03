@@ -1,6 +1,9 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import {
+  useLayoutEffect,
+  useSyncExternalStore,
+} from "react";
 import { useTranslations } from "next-intl";
 import LanguageButton from "@/components/ui/shared/language-button";
 import { Moon, Sun } from "lucide-react";
@@ -50,23 +53,34 @@ function getThemeSnapshot(): Theme {
     : "light";
 }
 
-function getServerThemeSnapshot(): Theme {
-  return "light";
-}
-
-export default function HeaderActions() {
+export default function HeaderActions({
+  initialTheme,
+}: {
+  initialTheme: Theme;
+}) {
   const t = useTranslations("HeaderActions");
   const theme = useSyncExternalStore(
     subscribeToTheme,
     getThemeSnapshot,
-    getServerThemeSnapshot,
+    () => initialTheme,
   );
+
+  useLayoutEffect(() => {
+    // Migrate the previous localStorage-only preference to the theme cookie.
+    const storedTheme = window.localStorage.getItem("theme");
+    if (storedTheme === "dark" || storedTheme === "light") {
+      applyTheme(storedTheme);
+      document.cookie = `theme=${storedTheme}; path=/; max-age=31536000; samesite=lax`;
+      window.dispatchEvent(new Event("themechange"));
+    }
+  }, []);
 
   function handleThemeChange(nextTheme: Theme) {
     window.localStorage.setItem(
       "theme",
       nextTheme,
     );
+    document.cookie = `theme=${nextTheme}; path=/; max-age=31536000; samesite=lax`;
     applyTheme(nextTheme);
     window.dispatchEvent(
       new Event("themechange"),

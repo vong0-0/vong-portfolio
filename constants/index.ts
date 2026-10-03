@@ -19,79 +19,60 @@ import {
 } from "lucide-react";
 
 export const HERO = {
-  name: "Vongsouvan Chanthasone",
   profileImage: "/images/profile-image.webp",
   profileImageAlt: "Vongsouvan Chanthasone",
 } as const;
 
-export const ABOUT = [
-  "Hi, I'm Vongsouvan Chanthasone",
-  "I'm a frontend developer based in Laos. I got into web dev because I like turning messy ideas into something people can actually click around and use.",
-  "Along the way, I got to compete at WorldSkills ASEAN, which pushed me to build faster and think clearer under pressure.",
-  "These days I'm mostly working with React and Next.js, and always looking for the next thing to figure out.",
-] as const;
-
 export const CONTACT_DETAILS = [
   {
-    label: "Phone",
+    labelKey: "phone",
     value: "+8562012345678",
+    href: "tel:+8562012345678",
     Icon: Phone,
   },
   {
-    label: "Email",
+    labelKey: "email",
     value: "vongsouvan09@gmail.com",
+    href: "mailto:vongsouvan09@gmail.com",
     Icon: Mail,
   },
   {
-    label: "GitHub",
+    labelKey: "github",
     value: "github.com/vong0-0",
+    href: "https://github.com/vong0-0",
     Icon: GitHubIcon,
   },
   {
-    label: "Website",
+    labelKey: "website",
     value: "vongsouvan.com",
+    href: "https://vongsouvan.com",
     Icon: Globe,
   },
 ] as const;
 
 export const PROJECTS = [
   {
-    title:
-      "Receipt Scanner & Financial Dashboard",
-    desc: "AI-powered receipt scanner that extracts expense details from a photo and visualizes spending on a dashboard with Lao language and Kip currency support.",
+    key: "receiptScanner",
     repo: "https://github.com/vong0-0/receipt-scanner.git",
   },
   {
-    title: "TonNam Smart Restaurant System",
-    desc: "A full-stack restaurant platform connecting admins, cashiers, waiters, and kitchen staff — handling orders, real-time kitchen updates, billing, and analytics in one system.",
+    key: "tonnam",
     repo: "https://github.com/vong0-0/tonnam-system.git",
   },
 ] as const;
 
 export const EXPERIENCES = [
-  {
-    year: "2025",
-    title: "Dev Tour Laos — Programming Contest",
-    decs: "Competed in Dev Tour Laos Programming Contest 2025, one of the country's largest developer competitions, held under the Web Technology track with support from the Ministry of Labor and Social Welfare and Lailaolab to discover Laos's top emerging developers.",
-  },
-  {
-    year: "2025",
-    title: "WorldSkills ASEAN Manila 2025",
-    decs: "Represented Laos in the Web Technologies category at WorldSkills ASEAN Manila 2025, a regional skills competition held in August 2025 — building functioning web solutions from a live brief under strict time constraints alongside some of the region's most skilled young developers.",
-  },
-  {
-    year: "2025",
-    title: "Internship — Lailaolab",
-    decs: "During a one-month internship at Lailaolab, a software development company in Laos, I worked as a Frontend Developer Intern building the admin-side interface for a food delivery platform, including partial API integration — using React, React Router DOM, TanStack Query, Zustand, Tailwind CSS, and shadcn/ui in a real product codebase alongside a professional engineering team.",
-  },
+  { key: "devTour" },
+  { key: "worldSkills" },
+  { key: "internship" },
 ] as const;
 
 export const QUICK_LINKS = [
-  { label: "Projects", href: "#projects" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "Skills", href: "#skills" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { key: "projects", href: "#projects" },
+  { key: "timeline", href: "#timeline" },
+  { key: "skills", href: "#skills" },
+  { key: "about", href: "#about" },
+  { key: "contact", href: "#contact" },
 ] as const;
 
 export const SKILL_ICONS = [

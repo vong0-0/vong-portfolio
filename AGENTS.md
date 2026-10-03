@@ -97,7 +97,7 @@ The implemented UI uses mostly square bordered cards and controls. Do not add ro
 
 ## Current Page Structure
 
-`app/page.tsx` renders the sections in this order:
+`app/[locale]/page.tsx` renders the sections in this order:
 
 1. Hero
 2. Projects
@@ -113,6 +113,7 @@ The implemented UI uses mostly square bordered cards and controls. Do not add ro
 - Light/dark theme controls
 - Theme persistence through `localStorage`
 - A Contact anchor button
+- A localized language dropdown for English and Lao
 - A top fade/slide animation
 
 There is currently no logo/name navigation bar, hamburger menu, or resume download action.
@@ -125,15 +126,14 @@ There is currently no logo/name navigation bar, hamburger menu, or resume downlo
 
 - An 84px circular profile image from `/images/profile-image.webp`
 - Grayscale image treatment
-- The name `Vongsouvan Chanthasone`
-- Frontend Developer tagline
+- A localized name and Frontend Developer tagline from `messages/{locale}.json`
 - Quick links positioned at the bottom of the section on larger screens
 
 There are currently no Hero CTA buttons or resume link.
 
 ### Projects
 
-`components/home/projects-section.tsx` renders two feature cards from `PROJECTS` in `constants/index.ts`:
+`components/home/projects-section.tsx` renders two feature cards using translated content from `messages/{locale}.json` and repository URLs from `PROJECTS` in `constants/index.ts`:
 
 1. Receipt Scanner & Financial Dashboard
 2. TonNam Smart Restaurant System
@@ -142,13 +142,13 @@ The cards alternate image/content placement on desktop and stack on smaller scre
 
 ### Experience
 
-`components/home/experience-section.tsx` renders a vertical timeline from `EXPERIENCES` in `constants/index.ts`. The current order and data are:
+`components/home/experience-section.tsx` renders a vertical timeline using translated content from `messages/{locale}.json`. `EXPERIENCES` in `constants/index.ts` defines the translation keys and display order:
 
 1. Dev Tour Laos — Programming Contest (2025)
 2. WorldSkills ASEAN Manila 2025 (2025)
 3. Internship — Lailaolab (2025)
 
-Each item currently has a year, title, description, animated timeline dot, and animated entry. The Experience content in `constants/index.ts` is intentionally kept as currently written.
+Each item currently has a year, title, description, animated timeline dot, and animated entry.
 
 Do not add third-party organization logos or badges without explicit approval.
 
@@ -164,7 +164,7 @@ Skill cards animate into view. On hover-capable fine-pointer devices, icons are 
 
 ### About
 
-`components/home/about-section.tsx` renders four animated paragraphs from `ABOUT` in `constants/index.ts`, including the owner's name, frontend background, WorldSkills experience, and current React/Next.js focus.
+`components/home/about-section.tsx` reads its heading, intro, and flexible `paragraphs` array from `messages/{locale}.json`. Keep the paragraphs as an array so each locale can have any number of paragraphs without assigning content-specific keys.
 
 ### Contact and footer
 
@@ -179,7 +179,9 @@ The section announces copy status to screen readers and includes the copyright f
 
 ## Content and configuration locations
 
-- `constants/index.ts`: portfolio text, contact display values, projects, experience entries, quick links, and skill colors
+- `constants/index.ts`: contact values, project and experience translation keys, quick-link keys, and skill colors
+- `messages/{locale}.json`: localized portfolio copy for each supported locale (`en` and `lo`)
+- `i18n/routing.ts`, `i18n/request.ts`, and `proxy.ts`: locale routing and message loading
 - `app/globals.css`: design tokens, Dark mode variables, shared styles, dot-grid, and skill icon states
 - `lib/site-url.ts`: canonical site URL configuration
 - `.env.example`: environment variable template
@@ -195,11 +197,11 @@ NEXT_PUBLIC_SITE_URL=https://vongsouvan.com
 
 The code falls back to `http://localhost:3000` when the variable is not set. Never put API keys, database URLs, authentication secrets, or private credentials in `NEXT_PUBLIC_*` variables.
 
-Contact information displayed on the page remains content in `constants/index.ts`. If a future contact form is added, keep its provider key in a server-only environment variable such as `RESEND_API_KEY`.
+Contact values remain in `constants/index.ts`; labels and copy-status text come from `messages/{locale}.json`. If a future contact form is added, keep its provider key in a server-only environment variable such as `RESEND_API_KEY`.
 
 ## SEO and accessibility
 
-- Metadata and Open Graph image are defined in `app/layout.tsx`
+- Metadata and Open Graph image are defined in `app/[locale]/layout.tsx`
 - `metadataBase` uses `SITE_URL`
 - `app/robots.ts` generates `robots.txt`
 - `app/sitemap.ts` generates `sitemap.xml`

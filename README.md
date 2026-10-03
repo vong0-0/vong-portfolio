@@ -14,6 +14,7 @@ Personal portfolio website for Vongsouvan Chanthasone, a frontend developer base
 - Scroll-based section and timeline animations with Motion
 - Responsive skill icon colors: grayscale-to-color on hover-capable devices and full color on touch devices
 - Copy-to-clipboard contact cards
+- English and Lao translations with locale-aware routes
 - SEO metadata, Open Graph image, `robots.txt`, and `sitemap.xml`
 - Optimized profile image served as WebP
 - Accessible focus states and semantic interactive elements
@@ -25,6 +26,7 @@ Personal portfolio website for Vongsouvan Chanthasone, a frontend developer base
 - Tailwind CSS 4
 - Motion for React animations
 - Lucide React icons
+- next-intl for routing and translations
 - shadcn/tw-animate CSS utilities
 - Vercel deployment
 
@@ -76,11 +78,14 @@ pnpm start     # Start the production server
 
 ```text
 app/
-  layout.tsx       Root layout, metadata, fonts, and theme initialization
-  page.tsx         Main single-page composition
+  [locale]/        Locale-aware layout and main page
   globals.css      Design tokens, theme styles, and shared component styles
   robots.ts        Generated robots.txt
   sitemap.ts       Generated sitemap.xml
+
+instrumentation-client.ts  Applies the saved theme before hydration
+i18n/               Locale routing and request configuration
+messages/           English and Lao translations
 
 components/
   home/             Portfolio sections
@@ -88,7 +93,7 @@ components/
   layout/           Header actions and quick links
 
 constants/
-  index.ts          Portfolio content, contact details, projects, and skills
+  index.ts          Contact values, item keys, quick links, and skills
 
 lib/
   site-url.ts       Shared site URL configuration
@@ -101,13 +106,14 @@ public/images/
 
 ## Updating Portfolio Content
 
-Most portfolio content is defined in [constants/index.ts](./constants/index.ts), including:
+Localized portfolio copy is defined in `messages/en.json` and `messages/lo.json`, including:
 
-- Hero profile information
-- About text
-- Contact details
-- Project descriptions and repository links
-- Experience timeline entries
+- Hero text and About paragraphs
+- Section headings and quick-link labels
+- Contact labels and copy status
+- Project descriptions and Experience entries
+
+`constants/index.ts` holds contact values, project repository URLs, translation keys, quick-link targets, and skill metadata.
 - Skill names, links, and colors
 
 Section layout and behavior live in `components/home/`.

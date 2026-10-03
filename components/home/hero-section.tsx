@@ -1,15 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { HERO } from "@/constants";
 import QuickLinkSection from "../layout/quick-link-section";
 import { motion } from "motion/react";
 
 export default function HeroSection() {
+  const t = useTranslations("HomePage");
+
   return (
     <section
       id="hero"
-
       className="relative border-b-[0.5px] border-solid border-[#38393C]"
     >
       <motion.div
@@ -30,13 +32,11 @@ export default function HeroSection() {
             />
           </div>
           <p className="text-center text-sm font-normal">
-            {HERO.name}
+            {t("name")}
           </p>
         </div>
         <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">
-          I&apos;m a Frontend Developer from Laos,
-          building clean and functional web
-          experiences.
+          {t("Hero.tagline")}
         </p>
       </motion.div>
 

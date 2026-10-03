@@ -3,9 +3,12 @@
 import { PROJECTS } from "@/constants";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 
 export default function ProjectSection() {
+  const t = useTranslations("HomePage.Projects");
+
   return (
     <section
       id="projects"
@@ -19,17 +22,17 @@ export default function ProjectSection() {
           viewport={{ once: true }}
           className="section-header"
         >
-          Projects
+          {t("header")}
         </motion.p>
 
         <div className="flex flex-col gap-6">
-          {PROJECTS.map(({ title, desc, repo }, index) => (
+          {PROJECTS.map(({ key, repo }, index) => (
             <motion.div
               initial={{
                 opacity: 0,
                 x: index % 2 === 0 ? -48 : 48,
               }}
-              key={title}
+              key={key}
               className={`mx-auto flex flex-col xs:max-w-125 md:max-w-full md:flex-row ${
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
               }`}
@@ -51,18 +54,18 @@ export default function ProjectSection() {
                 }`}
               >
                 <p className="mb-4 text-xl font-medium lg:text-2xl">
-                  {title}
+                  {t(`items.${key}.title`)}
                 </p>
 
                 <p className="mb-4.5 text-[15px] text-muted-foreground lg:text-base">
-                  {desc}
+                  {t(`items.${key}.desc`)}
                 </p>
                 <Link
                   href={repo}
                   className="group flex items-center gap-1"
                 >
                   <span className="text-[15px] underline underline-offset-2 transition-all duration-300 group-hover:text-muted-foreground lg:text-base">
-                    View repo
+                    {t("viewRepo")}
                   </span>
                   <span className="transition-all duration-300 group-hover:translate-x-[20%] group-hover:text-muted-foreground">
                     <ArrowRight className="size-4.5" />

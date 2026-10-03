@@ -1,9 +1,12 @@
 "use client";
 
-import { ABOUT } from "@/constants";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 
 export default function AboutSection() {
+  const t = useTranslations("HomePage.About");
+  const tRoot = useTranslations();
+
   return (
     <section
       id="about"
@@ -17,11 +20,20 @@ export default function AboutSection() {
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
         >
-          About
+          {t("header")}
         </motion.h2>
 
         <div className="mx-auto max-w-140 space-y-4 text-[15px] text-muted-foreground md:text-base">
-          {ABOUT.map((paragraph, index) => (
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            {t("intro", { name: tRoot("HomePage.name") })}
+          </motion.p>
+          {(t.raw("paragraphs") as string[]).map(
+            (paragraph, index) => (
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -31,11 +43,12 @@ export default function AboutSection() {
                 ease: "easeOut",
               }}
               viewport={{ once: true, amount: 0.25 }}
-              key={paragraph}
+              key={index}
             >
               {paragraph}
             </motion.p>
-          ))}
+            ),
+          )}
         </div>
       </div>
     </section>

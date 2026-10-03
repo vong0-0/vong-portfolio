@@ -1,0 +1,81 @@
+{
+  "HeaderActions": {
+    "groupLabel": "ການຄວບຄຸມຮູບແບບ ແລະ ພາສາ",
+    "lightTheme": "ໂໝດແຈ້ງ",
+    "darkTheme": "ໂໝດມືດ",
+    "changeLanguage": "ພາສາ",
+    "changeLanguageLabel": "ປ່ຽນພາສາ"
+  },
+  "HomePage": {
+    "name": "ວົງສຸວັນ ຈັນທະສອນ",
+    "Hero": {
+      "tagline": "ຂ້ອຍແມ່ນ Frontend Developer ຈາກລາວ, ສ້າງເວັບໄຊທີ່ທີ່ສະອາດ ແລະ ນຳໃຊ້ງານໄດ້ແທ້."
+    },
+    "QuickLinks": {
+      "projects": "ໂປຣເຈັກ",
+      "timeline": "ປະສົບການ",
+      "skills": "ທັກສະ",
+      "about": "ກ່ຽວກັບຂ້ອຍ",
+      "contact": "ຕິດຕໍ່"
+    },
+    "Projects": {
+      "header": "ໂປຣເຈັກ",
+      "viewRepo": "ເບິ່ງ Repo",
+      "items": {
+        "receiptScanner": {
+          "title": "Receipt Scanner & Financial Dashboard",
+          "desc": "ລະບົບສະແກນໃບບິນທີ່ຂັບເຄື່ອນດ້ວຍ AI ເຊິ່ງດຶງຂໍ້ມູນລາຍຈ່າຍຈາກຮູບພາບ ແລະ ສະແດງຜົນການໃຊ້ຈ່າຍເປັນ dashboard ພ້ອມຮອງຮັບພາສາລາວ ແລະ ສະກຸນເງິນກີບ."
+        },
+        "tonnam": {
+          "title": "TonNam Smart Restaurant System",
+          "desc": "ແພລດຟອມຮ້ານອາຫານແບບ full-stack ທີ່ເຊື່ອມຕໍ່ ແອດມິນ, ແຄັດເຊຍ, ພະນັກງານເສີບ ແລະ ພະນັກງານຄົວ ເຂົ້າໄວ້ນຳກັນ — ຈັດການອໍເດີ, ອັບເດດຄົວແບບ real-time, ຄິດໄລ່ເງິນ ແລະ ການວິເຄາະຂໍ້ມູນໃນລະບົບດຽວ."
+        }
+      }
+    },
+    "Skills": {
+      "header": "ທັກສະ"
+    },
+    "About": {
+      "header": "ກ່ຽວກັບຂ້ອຍ",
+      "intro": "ສະບາຍດີ, ຂ້ອຍແມ່ນ {name}",
+      "paragraphs": [
+        "ຂ້ອຍແມ່ນ frontend developer ທີ່ອາໄສຢູ່ລາວ. ຂ້ອຍເຂົ້າສູ່ວົງການພັດທະນາເວັບເພາະຂ້ອຍມັກການປ່ຽນໄອເດຍໃຫ້ກາຍເປັນສິ່ງທີ່ຄົນສາມາດກົດນຳໃຊ້ໄດ້ແທ້ໆ.",
+        "ລະຫວ່າງທາງ, ຂ້ອຍໄດ້ແຂ່ງຂັນໃນ WorldSkills ASEAN — ເປັນປະສົບການທີ່ຍົກລະດັບທັກສະຂອງຂ້ອຍ ແລະ ສອນໃຫ້ຂ້ອຍຮູ້ຫຼາຍຢ່າງກ່ຽວກັບການເຮັດວຽກພາຍໃຕ້ຄວາມກົດດັນ.",
+        "ໄລຍະນີ້ຂ້ອຍເຮັດວຽກກັບ React ແລະ Next.js ເປັນສ່ວນໃຫຍ່, ແລະ ຍັງຄົ້ນຫາສິ່ງໃໝ່ໆຢູ່ສະເໝີ."
+      ]
+    },
+    "Contact": {
+      "header": "ຕິດຕໍ່",
+      "labels": {
+        "phone": "ເບີໂທ",
+        "email": "ອີເມວ",
+        "github": "GitHub",
+        "website": "ເວັບໄຊທ໌"
+      },
+      "copy": "ສຳເນົາ {label}",
+      "copied": "ສຳເນົາແລ້ວ!",
+      "copiedAnnouncement": "ສຳເນົາ {label} ໄປທີ່ຄລິບບອດແລ້ວ.",
+      "copyright": "© 2026 Vongsouvan. All rights reserved"
+    },
+    "Experience": {
+      "header": "ປະສົບການ",
+      "items": {
+        "devTour": {
+          "year": "2025",
+          "title": "Dev Tour Laos — Programming Contest",
+          "desc": "ເຂົ້າຮ່ວມແຂ່ງຂັນ Dev Tour Laos Programming Contest 2025 ເຊິ່ງເປັນໜຶ່ງໃນການແຂ່ງຂັນນັກພັດທະນາທີ່ໃຫຍ່ທີ່ສຸດຂອງປະເທດ, ຈັດຂຶ້ນພາຍໃຕ້ສາຍ Web Technology ໂດຍການສະໜັບສະໜູນຈາກກະຊວງແຮງງານ ແລະ ສະຫວັດດີການສັງຄົມ ແລະ Lailaolab ເພື່ອຄົ້ນຫານັກພັດທະນາດາວຮຸ່ງຂອງລາວ."
+        },
+        "worldSkills": {
+          "year": "2025",
+          "title": "WorldSkills ASEAN Manila 2025",
+          "desc": "ເປັນຕົວແທນປະເທດລາວໃນສາຍ Web Technologies ທີ່ WorldSkills ASEAN Manila 2025, ການແຂ່ງຂັນສີມືລະດັບແຮງງານພາກພື້ນທີ່ຈັດຂຶ້ນໃນເດືອນສິງຫາ 2025 — ສ້າງໂຊລູຊັນເວັບໄຊທີ່ໃຊ້ງານໄດ້ແທ້ຈາກໂຈດແທ້ພາຍໃຕ້ເວລາທີ່ຈຳກັດ ຮ່ວມກັບນັກພັດທະນາລຸ້ນໃໝ່ທີ່ມີຝີມືທີ່ສຸດຂອງພາກພື້ນ."
+        },
+        "internship": {
+          "year": "2024",
+          "title": "Internship — Lailaolab",
+          "desc": "ໃນລະຫວ່າງການຝຶກງານໜຶ່ງເດືອນຢູ່ Lailaolab, ບໍລິສັດພັດທະນາຊອບແວໃນລາວ, ຂ້ອຍໄດ້ເຮັດວຽກເປັນ Frontend Developer Intern ສ້າງ UI ຝັ່ງ admin ໃຫ້ແພລດຟອມສົ່ງອາຫານ, ລວມທັງການເຊື່ອມຕໍ່ API ບາງສ່ວນ — ນຳໃຊ້ React, React Router DOM, TanStack Query, Zustand, Tailwind CSS, ແລະ shadcn/ui ໃນໂຄ້ດຂອງຜະລິດຕະພັນແທ້ ຮ່ວມກັບທີມວິສະວະກອນມືອາຊີບ."
+        }
+      }
+    }
+  }
+}

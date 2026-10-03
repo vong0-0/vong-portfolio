@@ -2,10 +2,13 @@
 
 import { SKILL_ICONS } from "@/constants";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import type { CSSProperties } from "react";
 
 export default function SkillSection() {
+  const t = useTranslations("HomePage.Skills");
+
   return (
     <section
       id="skills"
@@ -19,7 +22,7 @@ export default function SkillSection() {
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
         >
-          Skills
+          {t("header")}
         </motion.p>
 
         <div className="flex flex-col items-center justify-center xs:grid xs:auto-rows-auto xs:grid-cols-2 xs:gap-4 md:flex md:flex-row md:flex-wrap">

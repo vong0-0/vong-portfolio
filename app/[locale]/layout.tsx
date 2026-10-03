@@ -12,6 +12,7 @@ import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site-url";
 import HeaderActions from "@/components/layout/header-actions.tsx";
+import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
 import { NextIntlClientProvider } from "next-intl";
 
 const spaceGrotesk = Space_Grotesk({
@@ -71,6 +72,8 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const savedTheme = cookieStore.get("theme")?.value;
   const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  const skipEntranceAnimations =
+    cookieStore.get("skip-entrance")?.value === "1";
 
   return (
     <html
@@ -87,8 +90,14 @@ export default async function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider locale={locale}>
-          <HeaderActions initialTheme={initialTheme} />
-          <main>{children}</main>
+          <LocaleAnimationProvider
+            skipEntranceAnimations={
+              skipEntranceAnimations
+            }
+          >
+            <HeaderActions initialTheme={initialTheme} />
+            <main>{children}</main>
+          </LocaleAnimationProvider>
         </NextIntlClientProvider>
       </body>
     </html>

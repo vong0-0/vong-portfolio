@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import LanguageButton from "@/components/ui/shared/language-button";
 import { Moon, Sun } from "lucide-react";
 import { motion } from "motion/react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 type Theme = "light" | "dark";
 
@@ -29,6 +30,10 @@ function applyTheme(theme: Theme) {
     "dark",
     theme === "dark",
   );
+}
+
+function saveThemeCookie(theme: Theme) {
+  document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
 }
 
 function subscribeToTheme(onChange: () => void) {
@@ -59,6 +64,8 @@ export default function HeaderActions({
   initialTheme: Theme;
 }) {
   const t = useTranslations("HeaderActions");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
   const theme = useSyncExternalStore(
     subscribeToTheme,
     getThemeSnapshot,
@@ -66,6 +73,9 @@ export default function HeaderActions({
   );
 
   useLayoutEffect(() => {
+    document.cookie =
+      "skip-entrance=; path=/; max-age=0; samesite=lax";
+
     // Migrate the previous localStorage-only preference to the theme cookie.
     const storedTheme = window.localStorage.getItem("theme");
     if (storedTheme === "dark" || storedTheme === "light") {
@@ -80,7 +90,7 @@ export default function HeaderActions({
       "theme",
       nextTheme,
     );
-    document.cookie = `theme=${nextTheme}; path=/; max-age=31536000; samesite=lax`;
+    saveThemeCookie(nextTheme);
     applyTheme(nextTheme);
     window.dispatchEvent(
       new Event("themechange"),
@@ -89,14 +99,30 @@ export default function HeaderActions({
 
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        transform: "translateY(-30%)",
-      }}
-      whileInView={{
-        opacity: 1,
-        transform: "translateY(0%)",
-      }}
+      initial={
+        skipEntranceAnimations
+          ? false
+          : {
+              opacity: 0,
+              transform: "translateY(-30%)",
+            }
+      }
+      animate={
+        skipEntranceAnimations
+          ? {
+              opacity: 1,
+              transform: "translateY(0%)",
+            }
+          : undefined
+      }
+      whileInView={
+        skipEntranceAnimations
+          ? undefined
+          : {
+              opacity: 1,
+              transform: "translateY(0%)",
+            }
+      }
       viewport={{
         once: true,
       }}

@@ -1,14 +1,32 @@
+"use client";
+
 import { QUICK_LINKS } from "@/constants";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 export default function QuickLinkSection() {
   const t = useTranslations("HomePage.QuickLinks");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
 
   return (
     <motion.ul
-      initial={{ opacity: 0, translateY: 10 }}
-      whileInView={{ opacity: 1, translateY: 0 }}
+      initial={
+        skipEntranceAnimations
+          ? false
+          : { opacity: 0, translateY: 10 }
+      }
+      animate={
+        skipEntranceAnimations
+          ? { opacity: 1, translateY: 0 }
+          : undefined
+      }
+      whileInView={
+        skipEntranceAnimations
+          ? undefined
+          : { opacity: 1, translateY: 0 }
+      }
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className="flex w-full flex-wrap items-center justify-center [&_li]:border-2 [&_li]:border-l-0 [&_li]:border-solid [&_li]:border-foreground [&_li:first-child]:border-2"

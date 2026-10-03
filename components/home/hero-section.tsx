@@ -5,9 +5,12 @@ import { useTranslations } from "next-intl";
 import { HERO } from "@/constants";
 import QuickLinkSection from "../layout/quick-link-section";
 import { motion } from "motion/react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 export default function HeroSection() {
   const t = useTranslations("HomePage");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
 
   return (
     <section
@@ -15,8 +18,21 @@ export default function HeroSection() {
       className="relative border-b-[0.5px] border-solid border-[#38393C]"
     >
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={
+          skipEntranceAnimations
+            ? false
+            : { opacity: 0 }
+        }
+        animate={
+          skipEntranceAnimations
+            ? { opacity: 1 }
+            : undefined
+        }
+        whileInView={
+          skipEntranceAnimations
+            ? undefined
+            : { opacity: 1 }
+        }
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
         className="content-max-width flex flex-col items-center justify-center gap-9 px-6 py-10 pb-20 xs:pb-25 sm:px-20 sm:pt-20 sm:pb-36.25"

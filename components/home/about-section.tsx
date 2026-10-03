@@ -2,10 +2,13 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 export default function AboutSection() {
   const t = useTranslations("HomePage.About");
   const tRoot = useTranslations();
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
 
   return (
     <section
@@ -14,8 +17,21 @@ export default function AboutSection() {
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:py-20">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={
+            skipEntranceAnimations
+              ? false
+              : { opacity: 0, y: 24 }
+          }
+          animate={
+            skipEntranceAnimations
+              ? { opacity: 1, y: 0 }
+              : undefined
+          }
+          whileInView={
+            skipEntranceAnimations
+              ? undefined
+              : { opacity: 1, y: 0 }
+          }
           transition={{ duration: 0.55, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
@@ -25,8 +41,21 @@ export default function AboutSection() {
 
         <div className="mx-auto max-w-140 space-y-4 text-[15px] text-muted-foreground md:text-base">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={
+              skipEntranceAnimations
+                ? false
+                : { opacity: 0, y: 20 }
+            }
+            animate={
+              skipEntranceAnimations
+                ? { opacity: 1, y: 0 }
+                : undefined
+            }
+            whileInView={
+              skipEntranceAnimations
+                ? undefined
+                : { opacity: 1, y: 0 }
+            }
             transition={{ duration: 0.45, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
           >
@@ -35,8 +64,21 @@ export default function AboutSection() {
           {(t.raw("paragraphs") as string[]).map(
             (paragraph, index) => (
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={
+                skipEntranceAnimations
+                  ? false
+                  : { opacity: 0, y: 20 }
+              }
+              animate={
+                skipEntranceAnimations
+                  ? { opacity: 1, y: 0 }
+                  : undefined
+              }
+              whileInView={
+                skipEntranceAnimations
+                  ? undefined
+                  : { opacity: 1, y: 0 }
+              }
               transition={{
                 duration: 0.45,
                 delay: index * 0.1,

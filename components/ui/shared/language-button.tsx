@@ -50,7 +50,16 @@ export default function LanguageButton() {
               key={code}
               render={
                 available ? (
-                  <Link href={`/${code}`} />
+                  <Link
+                    href={`/${code}`}
+                    prefetch={false}
+                    onClick={() => {
+                      if (currentLocale !== code) {
+                        document.cookie =
+                          "skip-entrance=1; path=/; max-age=5; samesite=lax";
+                      }
+                    }}
+                  />
                 ) : undefined
               }
             >

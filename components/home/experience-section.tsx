@@ -3,9 +3,12 @@
 import { EXPERIENCES } from "@/constants";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 export default function ExperienceSection() {
   const t = useTranslations("HomePage.Experience");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
 
   return (
     <section
@@ -14,8 +17,21 @@ export default function ExperienceSection() {
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20 lg:space-y-14">
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={
+            skipEntranceAnimations
+              ? false
+              : { opacity: 0, y: 24 }
+          }
+          animate={
+            skipEntranceAnimations
+              ? { opacity: 1, y: 0 }
+              : undefined
+          }
+          whileInView={
+            skipEntranceAnimations
+              ? undefined
+              : { opacity: 1, y: 0 }
+          }
           transition={{ duration: 0.55, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
@@ -29,7 +45,16 @@ export default function ExperienceSection() {
             {EXPERIENCES.map(
               ({ key }, index) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 28 }}
+                  initial={
+                    skipEntranceAnimations
+                      ? false
+                      : { opacity: 0, y: 28 }
+                  }
+                  animate={
+                    skipEntranceAnimations
+                      ? { opacity: 1, y: 0 }
+                      : undefined
+                  }
                   className="relative lg:grid lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12"
                   key={key}
                   transition={{
@@ -38,11 +63,28 @@ export default function ExperienceSection() {
                     ease: "easeOut",
                   }}
                   viewport={{ once: true, amount: 0.2 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={
+                    skipEntranceAnimations
+                      ? undefined
+                      : { opacity: 1, y: 0 }
+                  }
                 >
                   <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
+                    initial={
+                      skipEntranceAnimations
+                        ? false
+                        : { scale: 0 }
+                    }
+                    animate={
+                      skipEntranceAnimations
+                        ? { scale: 1 }
+                        : undefined
+                    }
+                    whileInView={
+                      skipEntranceAnimations
+                        ? undefined
+                        : { scale: 1 }
+                    }
                     transition={{
                       duration: 0.3,
                       delay: index * 0.12 + 0.2,

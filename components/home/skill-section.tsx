@@ -5,9 +5,12 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import type { CSSProperties } from "react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 export default function SkillSection() {
   const t = useTranslations("HomePage.Skills");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
 
   return (
     <section
@@ -16,8 +19,21 @@ export default function SkillSection() {
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20">
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={
+            skipEntranceAnimations
+              ? false
+              : { opacity: 0, y: 24 }
+          }
+          animate={
+            skipEntranceAnimations
+              ? { opacity: 1, y: 0 }
+              : undefined
+          }
+          whileInView={
+            skipEntranceAnimations
+              ? undefined
+              : { opacity: 1, y: 0 }
+          }
           transition={{ duration: 0.55, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
@@ -30,7 +46,16 @@ export default function SkillSection() {
             ({ name, color, darkColor = color, href, Icon }, index) => (
               <motion.div
                 className="w-full max-w-90 xs:max-w-full md:max-w-50"
-                initial={{ opacity: 0, y: 24 }}
+                initial={
+                  skipEntranceAnimations
+                    ? false
+                    : { opacity: 0, y: 24 }
+                }
+                animate={
+                  skipEntranceAnimations
+                    ? { opacity: 1, y: 0 }
+                    : undefined
+                }
                 key={name}
                 transition={{
                   duration: 0.45,
@@ -38,7 +63,11 @@ export default function SkillSection() {
                   ease: "easeOut",
                 }}
                 viewport={{ amount: 0.15, once: true }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={
+                  skipEntranceAnimations
+                    ? undefined
+                    : { opacity: 1, y: 0 }
+                }
               >
                 <Link
                   className={`skill-card relative flex w-full flex-col items-center gap-3 border-2 border-t-0 border-solid border-foreground bg-background px-6 py-3 ${

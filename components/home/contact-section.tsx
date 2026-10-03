@@ -9,12 +9,15 @@ import {
   useRef,
   useState,
 } from "react";
+import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
 
 type ContactLabelKey =
   (typeof CONTACT_DETAILS)[number]["labelKey"];
 
 export default function ContactSection() {
   const t = useTranslations("HomePage.Contact");
+  const skipEntranceAnimations =
+    useSkipEntranceAnimations();
   const [copiedLabel, setCopiedLabel] =
     useState<ContactLabelKey | null>(null);
   const resetTimeout = useRef<number | null>(
@@ -55,8 +58,21 @@ export default function ContactSection() {
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20 md:pb-5">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={
+            skipEntranceAnimations
+              ? false
+              : { opacity: 0, y: 24 }
+          }
+          animate={
+            skipEntranceAnimations
+              ? { opacity: 1, y: 0 }
+              : undefined
+          }
+          whileInView={
+            skipEntranceAnimations
+              ? undefined
+              : { opacity: 1, y: 0 }
+          }
           transition={{ duration: 0.55, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header text-left xs:text-left"
@@ -80,8 +96,21 @@ export default function ContactSection() {
                   }
                   key={labelKey}
                   type="button"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={
+                    skipEntranceAnimations
+                      ? false
+                      : { opacity: 0, y: 24 }
+                  }
+                  animate={
+                    skipEntranceAnimations
+                      ? { opacity: 1, y: 0 }
+                      : undefined
+                  }
+                  whileInView={
+                    skipEntranceAnimations
+                      ? undefined
+                      : { opacity: 1, y: 0 }
+                  }
                   transition={{
                     duration: 0.45,
                     delay: index * 0.08,
@@ -131,8 +160,21 @@ export default function ContactSection() {
         </p>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={
+            skipEntranceAnimations
+              ? false
+              : { opacity: 0 }
+          }
+          animate={
+            skipEntranceAnimations
+              ? { opacity: 1 }
+              : undefined
+          }
+          whileInView={
+            skipEntranceAnimations
+              ? undefined
+              : { opacity: 1 }
+          }
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
           className="border-t border-border pt-6 text-center text-xs text-muted-foreground"

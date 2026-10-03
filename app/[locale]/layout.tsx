@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import type { ReactNode } from "react";
+import { notFound } from "next/navigation";
+import { hasLocale } from "next-intl";
+import {
+  Space_Grotesk,
+  Noto_Sans_Lao,
+} from "next/font/google";
 import "../globals.css";
+import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import HeaderActions from "@/components/layout/header-actions.tsx";
 import { NextIntlClientProvider } from "next-intl";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-space-grotesk",
   weight: ["400", "500", "700"],
+});
+const notoSansLao = Noto_Sans_Lao({
+  subsets: ["lao"],
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-lao",
 });
 
 const themeScript = `
@@ -47,17 +59,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: LayoutProps<"/[locale]">) {
+  params,
+}: {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
         spaceGrotesk.variable,
+        notoSansLao.variable,
         "font-sans",
       )}
     >
@@ -69,11 +92,9 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale}>
           <HeaderActions />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>

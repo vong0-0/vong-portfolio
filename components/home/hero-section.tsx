@@ -4,7 +4,7 @@ import QuickLinkSection from "../layout/quick-link-section";
 import { useTranslations } from "next-intl";
 
 export default function HeroSection() {
-  const t = useTranslations("HomePage.Hero");
+  const t = useTranslations("HomePage");
   return (
     <section
       id="hero"
@@ -22,11 +22,11 @@ export default function HeroSection() {
             />
           </div>
           <p className="text-center text-sm font-normal">
-            {HERO.name}
+            {t("name")}
           </p>
         </div>
         <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">
-          {t("tagline")}
+          {t("Hero.tagline")}
         </p>
       </div>
 

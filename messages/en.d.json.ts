@@ -10,6 +10,7 @@ declare const messages: {
     "changeLanguageLabel": "Change language"
   },
   "HomePage": {
+    "name": "Vongsouvan Chanthasone",
     "Hero": {
       "tagline": "I''m a Frontend Developer from Laos, building clean and functional web experiences."
     },
@@ -39,10 +40,10 @@ declare const messages: {
     },
     "About": {
       "header": "About",
-      "content": [
-        "Hi, I'm Vongsouvan Chanthasone",
+      "intro": "Hi, I'm {name}",
+      "paragraphs": [
         "I'm a frontend developer based in Laos. I got into web dev because I like turning messy ideas into something people can actually click around and use.",
-        "Along the way, I got to compete at WorldSkills ASEAN, which pushed me to build faster and think clearer under pressure.",
+        "Along the way, I got to compete at WorldSkills ASEAN — an experience that leveled up my skills and taught me a lot about working under real pressure.",
         "These days I'm mostly working with React and Next.js, and always looking for the next thing to figure out."
       ]
     },
@@ -57,7 +58,7 @@ declare const messages: {
       "copy": "Copy {label}",
       "copied": "Copied!",
       "copiedAnnouncement": "{label} copied to clipboard.",
-      "copyright": "© 2026 Vong Souvan. All rights reserved."
+      "copyright": "© 2026 Vongsouvan. All rights reserved."
     },
     "Experience": {
       "header": "Experience",

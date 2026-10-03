@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 
 export const HERO = {
-  name: "Vongsouvan Chanthasone",
   profileImage: "/images/profile-image.png",
   profileImageAlt: "Vongsouvan Chanthasone",
 } as const;

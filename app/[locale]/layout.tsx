@@ -23,13 +23,6 @@ const notoSansLao = Noto_Sans_Lao({
   variable: "--font-noto-lao",
 });
 
-const themeScript = `
-  (function () {
-    var theme = localStorage.getItem("theme");
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  })();
-`;
-
 export const metadata: Metadata = {
   title: "Vongsouvan Chanthasone",
   description:
@@ -84,13 +77,6 @@ export default async function RootLayout({
         "font-sans",
       )}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: themeScript,
-          }}
-        />
-      </head>
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider locale={locale}>
           <HeaderActions />

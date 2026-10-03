@@ -62,9 +62,18 @@ export const PROJECTS = [
 ] as const;
 
 export const EXPERIENCES = [
-  { key: "devTour" },
-  { key: "worldSkills" },
-  { key: "internship" },
+  {
+    key: "devTour",
+    href: "https://www.facebook.com/p/Dev-Tour-Laos-Programming-Contest-100094118034269/",
+  },
+  {
+    key: "worldSkills",
+    href: "https://worldskillsasean2025.com/",
+  },
+  {
+    key: "internship",
+    href: "https://www.lailaolab.com/",
+  },
 ] as const;
 
 export const QUICK_LINKS = [

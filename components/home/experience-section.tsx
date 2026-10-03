@@ -4,6 +4,12 @@ import { EXPERIENCES } from "@/constants";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/shared/tooltip";
 
 export default function ExperienceSection() {
   const t = useTranslations("HomePage.Experience");
@@ -41,9 +47,13 @@ export default function ExperienceSection() {
 
         <div className="relative pl-10 lg:mx-auto lg:w-fit lg:pl-0">
           <div className="absolute top-0 left-0 h-full w-px translate-x-2 bg-foreground lg:left-57 lg:translate-x-0"></div>
-          <div className="space-y-8">
+          <TooltipProvider>
+            <div className="space-y-8">
             {EXPERIENCES.map(
-              ({ key }, index) => (
+              ({ key, href }, index) => {
+                const title = t(`items.${key}.title`);
+
+                return (
                 <motion.div
                   initial={
                     skipEntranceAnimations
@@ -100,7 +110,23 @@ export default function ExperienceSection() {
 
                   <div className="lg:col-start-2 lg:row-start-1 lg:max-w-162.5 lg:pl-8">
                     <p className="mb-3 text-base font-medium lg:mb-0 lg:border-2 lg:border-solid lg:border-foreground lg:bg-secondary lg:px-6 lg:py-3 lg:text-[18px]">
-                      {t(`items.${key}.title`)}
+                      <Tooltip>
+                        <TooltipTrigger
+                          render={
+                            <a
+                              className="text-primary underline decoration-primary/50 underline-offset-4 transition-colors hover:text-accent-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                              href={href}
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              {title}
+                            </a>
+                          }
+                        />
+                        <TooltipContent>
+                          {t("tooltip", { name: title })}
+                        </TooltipContent>
+                      </Tooltip>
                     </p>
 
                     <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3 lg:text-base">
@@ -108,9 +134,11 @@ export default function ExperienceSection() {
                     </p>
                   </div>
                 </motion.div>
-              ),
+                );
+              },
             )}
-          </div>
+            </div>
+          </TooltipProvider>
         </div>
       </div>
     </section>

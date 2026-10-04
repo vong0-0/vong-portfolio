@@ -34,7 +34,10 @@ export default function RollingMessages({
     useState(0);
 
   useEffect(() => {
-    if (shouldReduceMotion !== false || messages.length < 2) {
+    if (
+      shouldReduceMotion !== false ||
+      messages.length < 2
+    ) {
       return;
     }
 
@@ -46,7 +49,11 @@ export default function RollingMessages({
     }, intervalMs);
 
     return () => window.clearInterval(timer);
-  }, [intervalMs, messages.length, shouldReduceMotion]);
+  }, [
+    intervalMs,
+    messages.length,
+    shouldReduceMotion,
+  ]);
 
   if (messages.length === 0) return null;
 
@@ -62,7 +69,7 @@ export default function RollingMessages({
       className={`flex min-h-20 w-full items-center justify-center text-center ${className}`}
       style={style}
     >
-      <span className="relative block min-h-20 w-full overflow-hidden sm:min-h-14">
+      <span className="relative block min-h-25 w-full overflow-hidden">
         <AnimatePresence
           initial={false}
           mode="wait"

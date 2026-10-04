@@ -79,7 +79,10 @@ export default function ContactSection() {
               ? undefined
               : { opacity: 1, y: 0 }
           }
-          transition={{ duration: 0.55, ease: "easeOut" }}
+          transition={{
+            duration: 0.55,
+            ease: "easeOut",
+          }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header text-left xs:text-left"
         >
@@ -89,8 +92,13 @@ export default function ContactSection() {
         <TooltipProvider>
           <div className="grid gap-4 md:grid-cols-2">
             {CONTACT_DETAILS.map(
-              ({ labelKey, value, Icon }, index) => {
-                const label = t(`labels.${labelKey}`);
+              (
+                { labelKey, value, Icon },
+                index,
+              ) => {
+                const label = t(
+                  `labels.${labelKey}`,
+                );
                 const isCopied =
                   copiedLabel === labelKey;
 
@@ -99,26 +107,40 @@ export default function ContactSection() {
                     <TooltipTrigger
                       render={
                         <motion.button
-                          aria-label={t("copy", { label })}
-                          className="group flex items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                          aria-label={t("copy", {
+                            label,
+                          })}
+                          className="group flex min-w-0 items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                           onClick={() =>
-                            handleCopy(labelKey, value)
+                            handleCopy(
+                              labelKey,
+                              value,
+                            )
                           }
                           type="button"
                           initial={
                             skipEntranceAnimations
                               ? false
-                              : { opacity: 0, y: 24 }
+                              : {
+                                  opacity: 0,
+                                  y: 24,
+                                }
                           }
                           animate={
                             skipEntranceAnimations
-                              ? { opacity: 1, y: 0 }
+                              ? {
+                                  opacity: 1,
+                                  y: 0,
+                                }
                               : undefined
                           }
                           whileInView={
                             skipEntranceAnimations
                               ? undefined
-                              : { opacity: 1, y: 0 }
+                              : {
+                                  opacity: 1,
+                                  y: 0,
+                                }
                           }
                           transition={{
                             duration: 0.45,
@@ -147,11 +169,11 @@ export default function ContactSection() {
                               />
                             </>
                           )}
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="text-xs text-muted-foreground">
                               {label}
                             </p>
-                            <p className="font-medium">
+                            <p className="truncate font-medium">
                               {isCopied
                                 ? t("copied")
                                 : value}
@@ -196,7 +218,10 @@ export default function ContactSection() {
               ? undefined
               : { opacity: 1 }
           }
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2,
+          }}
           viewport={{ once: true }}
           className="border-t border-border pt-6 text-center text-xs text-muted-foreground"
         >

@@ -64,7 +64,7 @@ declare const messages: {
       "copy": "Copy {label}",
       "copied": "Copied!",
       "copiedAnnouncement": "{label} copied to clipboard.",
-      "copyright": "© 2026 Vong Souvan. All rights reserved."
+      "copyright": "© 2026 Vongsouvan. All rights reserved."
     },
     "Experience": {
       "header": "Experience",

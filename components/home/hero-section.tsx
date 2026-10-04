@@ -16,7 +16,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative border-b-[0.5px] border-solid border-[#38393C]"
+      className="hero-line-texture relative border-b-[0.5px] border-solid border-[#38393C]"
     >
       <motion.div
         initial={

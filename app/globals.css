@@ -269,6 +269,26 @@
     background-size: 14px 14px;
   }
 
+  .hero-line-texture {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(47, 72, 88, 0.025) 0px,
+      rgba(47, 72, 88, 0.025) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  }
+
+  .dark .hero-line-texture {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(124, 160, 180, 0.04) 0px,
+      rgba(124, 160, 180, 0.04) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  }
+
   .content-max-width {
     @apply mx-auto w-full max-w-280;
   }

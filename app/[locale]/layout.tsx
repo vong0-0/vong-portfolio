@@ -11,7 +11,7 @@ import "../globals.css";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site-url";
-import HeaderActions from "@/components/layout/header-actions.tsx";
+import HeaderActions from "@/components/layout/header-actions";
 import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
 import { NextIntlClientProvider } from "next-intl";
 

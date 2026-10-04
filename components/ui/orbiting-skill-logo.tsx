@@ -25,7 +25,7 @@ const orbitPositions = [
 function getSkillBatch(
   skills: readonly SkillIcon[],
   start: number,
-  randomizeFill = false,
+  fillSeed = 0,
 ): SkillIcon[] {
   const batch = skills.slice(start, start + 3);
 
@@ -34,9 +34,7 @@ function getSkillBatch(
       (skill) => !batch.includes(skill),
     );
     const pool = candidates.length > 0 ? candidates : skills;
-    const nextIndex = randomizeFill
-      ? Math.floor(Math.random() * pool.length)
-      : (start + batch.length) % pool.length;
+    const nextIndex = Math.floor(fillSeed * pool.length);
     const nextSkill = pool[nextIndex];
 
     if (!nextSkill) break;
@@ -54,12 +52,18 @@ export default function OrbitingSkillLogo({
 }: OrbitingSkillLogoProps) {
   const shouldReduceMotion = useReducedMotion();
   const [batchStart, setBatchStart] = useState(0);
-  const [activeSkills, setActiveSkills] = useState<SkillIcon[]>(
-    () => getSkillBatch(skills, 0),
-  );
+  const [fillSeed, setFillSeed] = useState(0);
   const [rotation, setRotation] = useState(0);
 
   if (skills.length === 0) return null;
+
+  const activeBatchStart =
+    batchStart < skills.length ? batchStart : 0;
+  const activeSkills = getSkillBatch(
+    skills,
+    activeBatchStart,
+    fillSeed,
+  );
 
   return (
     <div
@@ -78,12 +82,12 @@ export default function OrbitingSkillLogo({
           if (shouldReduceMotion) return;
 
           const nextStart =
-            batchStart + 3 >= skills.length
+            activeBatchStart + 3 >= skills.length
               ? 0
-              : batchStart + 3;
+              : activeBatchStart + 3;
 
           setBatchStart(nextStart);
-          setActiveSkills(getSkillBatch(skills, nextStart, true));
+          setFillSeed(Math.random());
           setRotation((current) => current + 360);
         }}
       >
@@ -93,7 +97,7 @@ export default function OrbitingSkillLogo({
 
             return (
               <motion.span
-                key={`${batchStart}-${skill.name}`}
+                key={`${activeBatchStart}-${skill.name}`}
                 className={`${orbitPositions[index]} flex size-[25.8%] items-center justify-center rounded-full border border-border bg-background`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

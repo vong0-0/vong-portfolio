@@ -77,7 +77,6 @@ export const EXPERIENCES = [
 ] as const;
 
 export const QUICK_LINKS = [
-  { key: "projects", href: "#projects" },
   { key: "timeline", href: "#timeline" },
   { key: "skills", href: "#skills" },
   { key: "about", href: "#about" },

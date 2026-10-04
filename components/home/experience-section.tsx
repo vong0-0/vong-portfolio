@@ -49,94 +49,92 @@ export default function ExperienceSection() {
           <div className="absolute top-0 left-0 h-full w-px translate-x-2 bg-foreground lg:left-57 lg:translate-x-0"></div>
           <TooltipProvider>
             <div className="space-y-8">
-            {EXPERIENCES.map(
-              ({ key, href }, index) => {
+              {EXPERIENCES.map(({ key, href }, index) => {
                 const title = t(`items.${key}.title`);
 
                 return (
-                <motion.div
-                  initial={
-                    skipEntranceAnimations
-                      ? false
-                      : { opacity: 0, y: 28 }
-                  }
-                  animate={
-                    skipEntranceAnimations
-                      ? { opacity: 1, y: 0 }
-                      : undefined
-                  }
-                  className="relative lg:grid lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12"
-                  key={key}
-                  transition={{
-                    duration: 0.55,
-                    delay: index * 0.12,
-                    ease: "easeOut",
-                  }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  whileInView={
-                    skipEntranceAnimations
-                      ? undefined
-                      : { opacity: 1, y: 0 }
-                  }
-                >
                   <motion.div
                     initial={
                       skipEntranceAnimations
                         ? false
-                        : { scale: 0 }
+                        : { opacity: 0, y: 28 }
                     }
                     animate={
                       skipEntranceAnimations
-                        ? { scale: 1 }
+                        ? { opacity: 1, y: 0 }
                         : undefined
                     }
+                    className="relative lg:grid lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12"
+                    key={key}
+                    transition={{
+                      duration: 0.55,
+                      delay: index * 0.12,
+                      ease: "easeOut",
+                    }}
+                    viewport={{ once: true, amount: 0.2 }}
                     whileInView={
                       skipEntranceAnimations
                         ? undefined
-                        : { scale: 1 }
+                        : { opacity: 1, y: 0 }
                     }
-                    transition={{
-                      duration: 0.3,
-                      delay: index * 0.12 + 0.2,
-                      ease: "backOut",
-                    }}
-                    viewport={{ once: true }}
-                    className="absolute top-0 -left-10 h-4 w-4 rounded-full bg-foreground lg:left-55"
-                  ></motion.div>
+                  >
+                    <motion.div
+                      initial={
+                        skipEntranceAnimations
+                          ? false
+                          : { scale: 0 }
+                      }
+                      animate={
+                        skipEntranceAnimations
+                          ? { scale: 1 }
+                          : undefined
+                      }
+                      whileInView={
+                        skipEntranceAnimations
+                          ? undefined
+                          : { scale: 1 }
+                      }
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.12 + 0.2,
+                        ease: "backOut",
+                      }}
+                      viewport={{ once: true }}
+                      className="absolute top-0 -left-10 h-4 w-4 rounded-full bg-foreground lg:left-55"
+                    />
 
-                  <p className="mb-1.5 text-[13px] text-muted-foreground lg:col-start-1 lg:row-start-1 lg:mb-0 lg:translate-y-[-10%] lg:text-right lg:text-[36px] lg:font-medium lg:text-foreground lg:underline lg:underline-offset-4">
-                    {t(`items.${key}.year`)}
-                  </p>
-
-                  <div className="lg:col-start-2 lg:row-start-1 lg:max-w-162.5 lg:pl-8">
-                    <p className="mb-3 text-base font-medium lg:mb-0 lg:border-2 lg:border-solid lg:border-foreground lg:bg-secondary lg:px-6 lg:py-3 lg:text-[18px]">
-                      <Tooltip>
-                        <TooltipTrigger
-                          render={
-                            <a
-                              className="text-primary underline decoration-primary/50 underline-offset-4 transition-colors hover:text-accent-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                              href={href}
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              {title}
-                            </a>
-                          }
-                        />
-                        <TooltipContent>
-                          {t("tooltip", { name: title })}
-                        </TooltipContent>
-                      </Tooltip>
+                    <p className="mb-1.5 text-[13px] text-muted-foreground lg:col-start-1 lg:row-start-1 lg:mb-0 lg:translate-y-[-10%] lg:text-right lg:text-[36px] lg:font-medium lg:text-foreground lg:underline lg:underline-offset-4">
+                      {t(`items.${key}.year`)}
                     </p>
 
-                    <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3 lg:text-base">
-                      {t(`items.${key}.desc`)}
-                    </p>
-                  </div>
-                </motion.div>
+                    <div className="lg:col-start-2 lg:row-start-1 lg:max-w-162.5 lg:pl-8">
+                      <p className="mb-3 text-base font-medium lg:mb-0 lg:border-2 lg:border-solid lg:border-foreground lg:bg-secondary lg:px-6 lg:py-3 lg:text-[18px]">
+                        <Tooltip>
+                          <TooltipTrigger
+                            render={
+                              <a
+                                className="text-primary underline decoration-primary/50 underline-offset-4 transition-colors hover:text-accent-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                                href={href}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                {title}
+                              </a>
+                            }
+                          />
+                          <TooltipContent>
+                            {t("tooltip", { name: title })}
+                          </TooltipContent>
+                        </Tooltip>
+                      </p>
+
+                      <p className="text-[15px] text-muted-foreground lg:border-2 lg:border-t-0 lg:border-solid lg:border-foreground lg:px-6 lg:py-3 lg:text-base">
+                        {t(`items.${key}.desc`)}
+                      </p>
+                    </div>
+                  </motion.div>
                 );
-              },
-            )}
+              })}
             </div>
           </TooltipProvider>
         </div>

@@ -14,7 +14,7 @@ This file describes the implemented state of the portfolio. If the code and this
 
 ## Project Summary
 
-Personal portfolio website for Vongsouvan Chanthasone, a frontend developer based in Laos. The site is a responsive single-page portfolio for recruiters and hiring managers, with sections for projects, experience, skills, about, and contact.
+Personal portfolio website for Vongsouvan Chanthasone, a frontend developer based in Laos. The site is a responsive single-page portfolio for recruiters and hiring managers, with sections for experience, skills, about, and contact. The Projects section is temporarily hidden from the page.
 
 The project is built solo with AI-assisted development. Keep the content honest: do not claim backend technologies as personal skills unless the owner explicitly approves it.
 
@@ -25,7 +25,7 @@ The project is built solo with AI-assisted development. Keep the content honest:
 | Framework | Next.js 16.3.4 App Router |
 | Language | TypeScript |
 | Styling | Tailwind CSS 4 with custom tokens in `app/globals.css` |
-| UI utilities | shadcn/tw-animate CSS imports; no shared shadcn UI components are currently used |
+| UI utilities | shadcn/tw-animate CSS imports plus shared tooltip, dropdown, and language-button components |
 | Icons | Lucide React and inline SVG skill icons |
 | Animation | Motion for React (`motion`, imported from `motion/react`) plus Tailwind transitions |
 | Package manager | pnpm 10.11.1 |
@@ -37,7 +37,7 @@ The project is built solo with AI-assisted development. Keep the content honest:
 Use Tailwind CSS transitions for simple hover, active, and focus states. Use Motion for section and timeline animations:
 
 - Header and hero fade/slide into view
-- Project cards slide in from alternating left and right directions
+- Project cards slide in from alternating left and right directions when the Projects section is rendered
 - Experience entries and timeline dots animate into view
 - Skills, About, and Contact content fades/slides into view
 
@@ -76,7 +76,7 @@ The color tokens are defined in `app/globals.css` using CSS variables and expose
 | Section | Current implementation |
 |---|---|
 | Hero | Primary background |
-| Projects | Secondary background |
+| Projects | Secondary background in its component; temporarily not rendered |
 | Experience | Primary background inherited from the page |
 | Skills | Secondary background |
 | About | Primary background |
@@ -97,43 +97,49 @@ The implemented UI uses mostly square bordered cards and controls. Do not add ro
 
 ## Current Page Structure
 
-`app/[locale]/page.tsx` renders the sections in this order:
+`app/[locale]/page.tsx` currently renders the sections in this order:
 
 1. Hero
-2. Projects
-3. Experience
-4. Skills
-5. About
-6. Contact
+2. Experience
+3. Skills
+4. About
+5. Contact
+
+The Projects component and its content remain in the codebase, but the section is temporarily not rendered. Its Hero quick link is also hidden while the section is unavailable.
 
 ### Header and quick links
 
-`components/layout/header-actions.tsx.tsx` currently provides:
+`components/layout/header-actions.tsx` currently provides:
 
 - Light/dark theme controls
-- Theme persistence through `localStorage`
+- Theme persistence through `localStorage` and a cookie
 - A Contact anchor button
 - A localized language dropdown for English and Lao
 - A top fade/slide animation
 
 There is currently no logo/name navigation bar, hamburger menu, or resume download action.
 
-`components/layout/quick-link-section.tsx` provides the horizontal quick links rendered over the bottom of the Hero on `xs` and larger screens.
+`components/layout/quick-link-section.tsx` provides links to Timeline, Skills, About, and Contact over the bottom of the Hero on `xs` and larger screens. The Projects link is removed while that section is hidden.
 
 ### Hero
 
 `components/home/hero-section.tsx` currently contains:
 
-- An 84px circular profile image from `/images/profile-image.webp`
+- A 104px circular profile image from `/images/profile-image.webp`
 - Grayscale image treatment
-- A localized name and Frontend Developer tagline from `messages/{locale}.json`
+- A dashed accent-secondary ring around the profile image, rotating slowly and remaining static when reduced motion is enabled
+- A localized name and four rolling Hero messages from `messages/{locale}.json`
+- Three skill logos orbiting around the profile, switching groups after each full revolution; reduced-motion preferences keep the logos static
+- A subtle diagonal line background texture scoped to the Hero
 - Quick links positioned at the bottom of the section on larger screens
+
+`components/ui/rolling-messages.tsx` accepts `messages`, `intervalMs`, `transitionDurationMs`, `className`, and `style` props. It shows only the first message when reduced motion is enabled. `components/ui/orbiting-skill-logo.tsx` accepts an optional skill list, orbit duration, and class name; it is positioned inside a relatively positioned square container.
 
 There are currently no Hero CTA buttons or resume link.
 
 ### Projects
 
-`components/home/projects-section.tsx` renders two feature cards using translated content from `messages/{locale}.json` and repository URLs from `PROJECTS` in `constants/index.ts`:
+`components/home/projects-section.tsx` contains two feature cards using translated content from `messages/{locale}.json` and repository URLs from `PROJECTS` in `constants/index.ts`. The section is temporarily not included by `app/[locale]/page.tsx`:
 
 1. Receipt Scanner & Financial Dashboard
 2. TonNam Smart Restaurant System
@@ -182,7 +188,7 @@ The section announces copy status to screen readers and includes the copyright f
 - `constants/index.ts`: contact values, project and experience translation keys, quick-link keys, and skill colors
 - `messages/{locale}.json`: localized portfolio copy for each supported locale (`en` and `lo`)
 - `i18n/routing.ts`, `i18n/request.ts`, and `proxy.ts`: locale routing and message loading
-- `app/globals.css`: design tokens, Dark mode variables, shared styles, dot-grid, and skill icon states
+- `app/globals.css`: design tokens, Dark mode variables, shared styles, dot-grid, Hero diagonal texture, and skill icon states
 - `lib/site-url.ts`: canonical site URL configuration
 - `.env.example`: environment variable template
 - `public/images/`: profile and Open Graph images
@@ -236,7 +242,7 @@ The project preview placeholder and current Experience data are intentional and 
 
 - Live demos for the two projects
 - Contact form/backend integration
-- Multilingual support
+- Additional locales beyond English and Lao
 - CMS-driven content editing
 - Adding backend technologies to the personal Skills section
 - GSAP or another animation library alongside Motion

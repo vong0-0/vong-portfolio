@@ -16,7 +16,8 @@ proxy.ts (next-intl middleware)
      │
      ▼
 app/[locale]/layout.tsx
-     │  ├─ โหลด global CSS, font, metadata และ HeaderActions
+     │  ├─ โหลด global CSS, font, metadata และ HeaderContainer
+     │  │    └─ AppearanceLanguageControls
      │  └─ ครอบหน้าด้วย NextIntlClientProvider
      ▼
 app/[locale]/page.tsx

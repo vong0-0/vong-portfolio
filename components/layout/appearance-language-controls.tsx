@@ -64,7 +64,7 @@ function getThemeSnapshot(): Theme {
     : "light";
 }
 
-export default function HeaderActions({
+export default function AppearanceLanguageControls({
   initialTheme,
 }: {
   initialTheme: Theme;

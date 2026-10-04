@@ -46,7 +46,26 @@ export default function ExperienceSection() {
         </motion.p>
 
         <div className="relative pl-10 lg:mx-auto lg:w-fit lg:pl-0">
-          <div className="absolute top-0 left-0 h-full w-px translate-x-2 bg-foreground lg:left-57 lg:translate-x-0"></div>
+          <motion.div
+            initial={
+              skipEntranceAnimations
+                ? false
+                : { opacity: 0 }
+            }
+            animate={
+              skipEntranceAnimations
+                ? { opacity: 1 }
+                : undefined
+            }
+            whileInView={
+              skipEntranceAnimations
+                ? undefined
+                : { opacity: 1 }
+            }
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="absolute top-0 left-0 h-full w-px translate-x-2 bg-foreground lg:left-57 lg:translate-x-0"
+          />
           <TooltipProvider>
             <div className="space-y-8">
               {EXPERIENCES.map(({ key, href }, index) => {

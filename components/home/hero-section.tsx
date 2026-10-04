@@ -41,7 +41,7 @@ export default function HeroSection() {
         }
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="content-max-width flex flex-col items-center justify-center gap-9 px-6 py-10 pb-20 xs:pb-25 sm:px-20 sm:pt-20 sm:pb-36.25"
+        className="content-max-width flex flex-col items-center justify-center gap-9 px-6 pt-32 pb-20 xs:pb-25 sm:px-20 sm:pb-36.25"
       >
         <div className="flex flex-col items-center gap-y-10">
           <div className="relative size-26">

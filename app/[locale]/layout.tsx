@@ -11,7 +11,8 @@ import "../globals.css";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { generateLocaleMetadata } from "@/lib/metadata";
-import HeaderActions from "@/components/layout/header-actions";
+import AppearanceLanguageControls from "@/components/layout/appearance-language-controls";
+import HeaderContainer from "@/components/layout/header-container";
 import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -49,10 +50,13 @@ export default async function RootLayout({
   }
 
   const cookieStore = await cookies();
-  const savedTheme = cookieStore.get("theme")?.value;
-  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  const savedTheme =
+    cookieStore.get("theme")?.value;
+  const initialTheme =
+    savedTheme === "dark" ? "dark" : "light";
   const skipEntranceAnimations =
-    cookieStore.get("skip-entrance")?.value === "1";
+    cookieStore.get("skip-entrance")?.value ===
+    "1";
 
   return (
     <html
@@ -74,7 +78,15 @@ export default async function RootLayout({
               skipEntranceAnimations
             }
           >
-            <HeaderActions initialTheme={initialTheme} />
+            <HeaderContainer
+              className={
+                "absolute top-0 w-full bg-transparent"
+              }
+            >
+              <AppearanceLanguageControls
+                initialTheme={initialTheme}
+              />
+            </HeaderContainer>
             <main>{children}</main>
           </LocaleAnimationProvider>
         </NextIntlClientProvider>

@@ -109,11 +109,10 @@ The Projects component and its content remain in the codebase, but the section i
 
 ### Header and quick links
 
-`components/layout/header-actions.tsx` currently provides:
+`components/layout/header-container.tsx` is the shared header wrapper for its child components. `components/layout/appearance-language-controls.tsx` currently provides:
 
 - Light/dark theme controls
 - Theme persistence through `localStorage` and a cookie
-- A Contact anchor button
 - A localized language dropdown for English and Lao
 - A top fade/slide animation
 

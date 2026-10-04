@@ -40,7 +40,10 @@ export default function SkillSection() {
               ? undefined
               : { opacity: 1, y: 0 }
           }
-          transition={{ duration: 0.55, ease: "easeOut" }}
+          transition={{
+            duration: 0.55,
+            ease: "easeOut",
+          }}
           viewport={{ once: true, amount: 0.5 }}
           className="section-header"
         >
@@ -48,10 +51,16 @@ export default function SkillSection() {
         </motion.p>
 
         <TooltipProvider>
-          <div className="flex flex-col items-center justify-center xs:grid xs:auto-rows-auto xs:grid-cols-2 xs:gap-4 md:flex md:flex-row md:flex-wrap">
+          <div className="flex flex-col items-center justify-center gap-2 xs:grid xs:auto-rows-auto xs:grid-cols-2 xs:gap-4 md:flex md:flex-row md:flex-wrap">
             {SKILL_ICONS.map(
               (
-                { name, color, darkColor = color, href, Icon },
+                {
+                  name,
+                  color,
+                  darkColor = color,
+                  href,
+                  Icon,
+                },
                 index,
               ) => (
                 <motion.div
@@ -72,7 +81,10 @@ export default function SkillSection() {
                     delay: index * 0.06,
                     ease: "easeOut",
                   }}
-                  viewport={{ amount: 0.15, once: true }}
+                  viewport={{
+                    amount: 0.15,
+                    once: true,
+                  }}
                   whileInView={
                     skipEntranceAnimations
                       ? undefined
@@ -83,9 +95,11 @@ export default function SkillSection() {
                     <TooltipTrigger
                       render={
                         <Link
-                          className={`skill-card relative flex w-full flex-col items-center gap-3 border-2 border-t-0 border-solid border-foreground bg-background px-6 py-3 ${
-                            index === 0 ? "border-t-2" : ""
-                          } xs:border-2 xs:transition-transform xs:duration-150 xs:hover:-translate-y-2 xs:active:translate-y-0 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-[-8px] after:h-[8px] after:bg-foreground after:opacity-0 after:transition-opacity after:duration-150 xs:hover:after:opacity-100 xs:active:after:opacity-0`}
+                          className={`skill-card relative flex w-full flex-col items-center gap-3 border-2 border-solid border-foreground bg-background px-6 py-3 ${
+                            index === 0
+                              ? "border-t-2"
+                              : ""
+                          } after:pointer-events-none after:absolute after:inset-x-0 after:bottom-[-8px] after:h-[8px] after:bg-foreground after:opacity-0 after:transition-opacity after:duration-150 xs:border-2 xs:transition-transform xs:duration-150 xs:hover:-translate-y-2 xs:hover:after:opacity-100 xs:active:translate-y-0 xs:active:after:opacity-0`}
                           href={href}
                           rel="noreferrer"
                           target="_blank"
@@ -94,8 +108,10 @@ export default function SkillSection() {
                             className="skill-icon"
                             style={
                               {
-                                "--skill-color": color,
-                                "--skill-color-dark": darkColor,
+                                "--skill-color":
+                                  color,
+                                "--skill-color-dark":
+                                  darkColor,
                               } as CSSProperties
                             }
                           />

@@ -6,6 +6,7 @@ import { HERO } from "@/constants";
 import QuickLinkSection from "../layout/quick-link-section";
 import { motion } from "motion/react";
 import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
+import RollingMessages from "../ui/rolling-messages";
 
 export default function HeroSection() {
   const t = useTranslations("HomePage");
@@ -51,9 +52,16 @@ export default function HeroSection() {
             {t("name")}
           </p>
         </div>
-        <p className="mx-auto w-full max-w-133.5 text-center text-lg font-medium sm:text-2xl">
-          {t("Hero.tagline")}
-        </p>
+        <RollingMessages
+          messages={
+            t.raw(
+              "Hero.messages",
+            ) as readonly string[]
+          }
+          className="mx-auto max-w-133.5 text-lg font-medium sm:text-2xl"
+          transitionDurationMs={200}
+          intervalMs={2000}
+        />
       </motion.div>
 
       <div className="absolute bottom-0 left-1/2 z-50 hidden w-full -translate-x-1/2 translate-y-1/2 xs:block">

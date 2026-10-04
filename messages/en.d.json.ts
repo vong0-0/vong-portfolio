@@ -12,7 +12,12 @@ declare const messages: {
   "HomePage": {
     "name": "Vongsouvan Chanthasone",
     "Hero": {
-      "tagline": "I''m a Frontend Developer from Laos, building clean and functional web experiences."
+      "messages": [
+        "I'm a Frontend Developer from Laos, building clean and functional web experiences.",
+        "Building with React and Next.js — always chasing the next challenge.",
+        "I care about clean code, clear UI, and shipping things that work.",
+        "When I'm not coding, I'm probably still thinking about code."
+      ]
     },
     "QuickLinks": {
       "projects": "Projects",

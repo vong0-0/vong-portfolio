@@ -2,6 +2,9 @@
 // See: https://next-intl.dev/docs/workflows/typescript#messages-arguments
 
 declare const messages: {
+  "metadata": {
+    "description": "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design."
+  },
   "HeaderActions": {
     "groupLabel": "Theme and language controls",
     "lightTheme": "Light theme",

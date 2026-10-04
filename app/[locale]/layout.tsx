@@ -10,7 +10,7 @@ import {
 import "../globals.css";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { SITE_URL } from "@/lib/site-url";
+import { generateLocaleMetadata } from "@/lib/metadata";
 import HeaderActions from "@/components/layout/header-actions";
 import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
 import { NextIntlClientProvider } from "next-intl";
@@ -26,35 +26,14 @@ const notoSansLao = Noto_Sans_Lao({
   variable: "--font-noto-lao",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: "Vongsouvan Chanthasone",
-  description:
-    "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design.",
-  openGraph: {
-    title: "Vongsouvan Chanthasone",
-    description:
-      "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design.",
-    url: SITE_URL,
-    siteName: "Vongsouvan Chanthasone",
-    images: [
-      {
-        url: "/images/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Vongsouvan Chanthasone",
-    description:
-      "Frontend Developer from Laos building clean, functional web experiences with React and Next.js. Focused on performance, accessibility, and thoughtful design.",
-    images: ["/images/og-image.png"],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generateLocaleMetadata(locale);
+}
 
 export default async function RootLayout({
   children,

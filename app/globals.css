@@ -311,6 +311,14 @@
     color: var(--skill-color-dark);
   }
 
+  .hero-orbit-skill {
+    color: var(--skill-color);
+  }
+
+  .dark .hero-orbit-skill {
+    color: var(--skill-color-dark);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     .skill-icon {
       color: var(--muted-foreground);

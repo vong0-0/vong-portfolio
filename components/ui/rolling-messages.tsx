@@ -34,7 +34,9 @@ export default function RollingMessages({
     useState(0);
 
   useEffect(() => {
-    if (messages.length < 2) return;
+    if (shouldReduceMotion !== false || messages.length < 2) {
+      return;
+    }
 
     const timer = window.setInterval(() => {
       setActiveIndex(
@@ -44,12 +46,16 @@ export default function RollingMessages({
     }, intervalMs);
 
     return () => window.clearInterval(timer);
-  }, [intervalMs, messages.length]);
+  }, [intervalMs, messages.length, shouldReduceMotion]);
 
   if (messages.length === 0) return null;
 
   const activeMessage =
-    messages[activeIndex % messages.length];
+    messages[
+      shouldReduceMotion === false
+        ? activeIndex % messages.length
+        : 0
+    ];
 
   return (
     <div

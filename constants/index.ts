@@ -12,11 +12,7 @@ import {
   TypeScriptIcon,
   ViteIcon,
 } from "@/components/icons/skill-icons";
-import {
-  Globe,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { Globe, Mail, Phone } from "lucide-react";
 
 export const HERO = {
   profileImage: "/images/profile-image.webp",
@@ -26,8 +22,8 @@ export const HERO = {
 export const CONTACT_DETAILS = [
   {
     labelKey: "phone",
-    value: "+8562012345678",
-    href: "tel:+8562012345678",
+    value: "+8562058989137",
+    href: "tel:+8562058989137",
     Icon: Phone,
   },
   {

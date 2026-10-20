@@ -3,6 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   output: "export",
+  basePath: process.env.NEXT_BASE_PATH ?? "",
   trailingSlash: true,
   images: {
     unoptimized: true,

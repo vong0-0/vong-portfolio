@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useLayoutEffect,
   useSyncExternalStore,
 } from "react";
 import { useTranslations } from "next-intl";
@@ -36,10 +35,6 @@ function applyTheme(theme: Theme) {
     "dark",
     theme === "dark",
   );
-}
-
-function saveThemeCookie(theme: Theme) {
-  document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
 }
 
 function subscribeToTheme(onChange: () => void) {
@@ -78,25 +73,11 @@ export default function AppearanceLanguageControls({
     () => initialTheme,
   );
 
-  useLayoutEffect(() => {
-    document.cookie =
-      "skip-entrance=; path=/; max-age=0; samesite=lax";
-
-    // Migrate the previous localStorage-only preference to the theme cookie.
-    const storedTheme = window.localStorage.getItem("theme");
-    if (storedTheme === "dark" || storedTheme === "light") {
-      applyTheme(storedTheme);
-      document.cookie = `theme=${storedTheme}; path=/; max-age=31536000; samesite=lax`;
-      window.dispatchEvent(new Event("themechange"));
-    }
-  }, []);
-
   function handleThemeChange(nextTheme: Theme) {
     window.localStorage.setItem(
       "theme",
       nextTheme,
     );
-    saveThemeCookie(nextTheme);
     applyTheme(nextTheme);
     window.dispatchEvent(
       new Event("themechange"),

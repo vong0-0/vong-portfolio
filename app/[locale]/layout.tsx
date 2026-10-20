@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 import { hasLocale } from "next-intl";
 import {
   Space_Grotesk,
@@ -15,6 +14,30 @@ import AppearanceLanguageControls from "@/components/layout/appearance-language-
 import HeaderContainer from "@/components/layout/header-container";
 import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
 import { NextIntlClientProvider } from "next-intl";
+
+const initialThemeScript = `
+(() => {
+  try {
+    const savedTheme = window.localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const theme =
+      savedTheme === "dark" || savedTheme === "light"
+        ? savedTheme
+        : prefersDark
+          ? "dark"
+          : "light";
+
+    document.documentElement.classList.toggle(
+      "dark",
+      theme === "dark",
+    );
+  } catch {
+    document.documentElement.classList.remove("dark");
+  }
+})();
+`;
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -36,6 +59,10 @@ export async function generateMetadata({
   return generateLocaleMetadata(locale);
 }
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -49,14 +76,7 @@ export default async function RootLayout({
     notFound();
   }
 
-  const cookieStore = await cookies();
-  const savedTheme =
-    cookieStore.get("theme")?.value;
-  const initialTheme =
-    savedTheme === "dark" ? "dark" : "light";
-  const skipEntranceAnimations =
-    cookieStore.get("skip-entrance")?.value ===
-    "1";
+  const initialTheme = "light";
 
   return (
     <html
@@ -64,19 +84,23 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={cn(
         "h-full",
-        initialTheme === "dark" && "dark",
         "antialiased",
         spaceGrotesk.variable,
         notoSansLao.variable,
         "font-sans",
       )}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: initialThemeScript,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider locale={locale}>
           <LocaleAnimationProvider
-            skipEntranceAnimations={
-              skipEntranceAnimations
-            }
+            skipEntranceAnimations={false}
           >
             <HeaderContainer
               className={

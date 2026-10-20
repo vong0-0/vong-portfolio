@@ -82,7 +82,7 @@ export default function HeroSection() {
                 alt={HERO.profileImageAlt}
                 className="h-full w-full object-cover"
                 height={104}
-                src={HERO.profileImage}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${HERO.profileImage}`}
                 width={104}
               />
             </div>

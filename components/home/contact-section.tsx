@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { useSkipEntranceAnimations } from "@/components/providers/locale-animation-provider";
+import SectionHeading from "@/components/ui/section-heading";
 import {
   Tooltip,
   TooltipContent,
@@ -63,31 +64,11 @@ export default function ContactSection() {
       className="dot-grid bg-secondary"
     >
       <div className="content-max-width space-y-6 px-6 py-12 md:space-y-10 md:py-20 md:pb-5">
-        <motion.h2
-          initial={
-            skipEntranceAnimations
-              ? false
-              : { opacity: 0, y: 24 }
-          }
-          animate={
-            skipEntranceAnimations
-              ? { opacity: 1, y: 0 }
-              : undefined
-          }
-          whileInView={
-            skipEntranceAnimations
-              ? undefined
-              : { opacity: 1, y: 0 }
-          }
-          transition={{
-            duration: 0.55,
-            ease: "easeOut",
-          }}
-          viewport={{ once: true, amount: 0.5 }}
-          className="section-header text-left xs:text-left"
-        >
-          {t("header")}
-        </motion.h2>
+        <SectionHeading
+          align="left"
+          index="04"
+          title={t("header")}
+        />
 
         <TooltipProvider>
           <div className="grid gap-4 md:grid-cols-2">
@@ -110,7 +91,7 @@ export default function ContactSection() {
                           aria-label={t("copy", {
                             label,
                           })}
-                          className="group flex min-w-0 items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                          className="group lift-card flex min-w-0 items-center gap-3 border-2 border-solid border-foreground bg-background p-3 text-left hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:p-4"
                           onClick={() =>
                             handleCopy(
                               labelKey,
@@ -123,7 +104,7 @@ export default function ContactSection() {
                               ? false
                               : {
                                   opacity: 0,
-                                  y: 24,
+                                  y: 32,
                                 }
                           }
                           animate={
@@ -143,9 +124,10 @@ export default function ContactSection() {
                                 }
                           }
                           transition={{
-                            duration: 0.45,
+                            type: "spring",
+                            stiffness: 220,
+                            damping: 22,
                             delay: index * 0.08,
-                            ease: "easeOut",
                           }}
                           viewport={{
                             once: true,
@@ -153,10 +135,27 @@ export default function ContactSection() {
                           }}
                         >
                           {isCopied ? (
-                            <Check
-                              aria-hidden="true"
-                              className="size-5 shrink-0 text-primary"
-                            />
+                            <motion.span
+                              animate={{
+                                rotate: 0,
+                                scale: 1,
+                              }}
+                              className="shrink-0"
+                              initial={{
+                                rotate: -60,
+                                scale: 0,
+                              }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 16,
+                              }}
+                            >
+                              <Check
+                                aria-hidden="true"
+                                className="size-5 text-primary"
+                              />
+                            </motion.span>
                           ) : (
                             <>
                               <Copy

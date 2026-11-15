@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useLayoutEffect,
   useSyncExternalStore,
 } from "react";
 import { useTranslations } from "next-intl";
@@ -73,7 +74,26 @@ export default function AppearanceLanguageControls({
     () => initialTheme,
   );
 
-  function handleThemeChange(nextTheme: Theme) {
+  useLayoutEffect(() => {
+    document.cookie =
+      "skip-entrance=; path=/; max-age=0; samesite=lax";
+
+    // Migrate the previous localStorage-only preference to the theme cookie.
+    const storedTheme =
+      window.localStorage.getItem("theme");
+    if (
+      storedTheme === "dark" ||
+      storedTheme === "light"
+    ) {
+      applyTheme(storedTheme);
+      document.cookie = `theme=${storedTheme}; path=/; max-age=31536000; samesite=lax`;
+      window.dispatchEvent(
+        new Event("themechange"),
+      );
+    }
+  }, []);
+
+  function commitTheme(nextTheme: Theme) {
     window.localStorage.setItem(
       "theme",
       nextTheme,
@@ -82,6 +102,60 @@ export default function AppearanceLanguageControls({
     window.dispatchEvent(
       new Event("themechange"),
     );
+  }
+
+  /** Switches theme, revealing the new one in a circle that grows from the button. */
+  function handleThemeChange(
+    nextTheme: Theme,
+    button: HTMLElement,
+  ) {
+    const canAnimate =
+      nextTheme !== theme &&
+      typeof document.startViewTransition ===
+        "function" &&
+      !window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+    if (!canAnimate) {
+      commitTheme(nextTheme);
+      return;
+    }
+
+    const bounds = button.getBoundingClientRect();
+    const x = bounds.left + bounds.width / 2;
+    const y = bounds.top + bounds.height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    const transition =
+      document.startViewTransition(() =>
+        commitTheme(nextTheme),
+      );
+
+    transition.ready
+      .then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${radius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 650,
+            easing:
+              "cubic-bezier(0.65, 0, 0.35, 1)",
+            pseudoElement:
+              "::view-transition-new(root)",
+          },
+        );
+      })
+      .catch(() => {
+        // The browser skipped the transition; the theme is already applied.
+      });
   }
 
   return (
@@ -146,19 +220,34 @@ export default function AppearanceLanguageControls({
                     <TooltipTrigger
                       aria-label={t(labelKey)}
                       aria-pressed={isActive}
-                      className={`flex items-center justify-center rounded-full px-1.5 py-1.5 text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
+                      className={`relative flex items-center justify-center rounded-full px-1.5 py-1.5 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
                         isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "hover:bg-muted hover:text-foreground"
+                          ? "text-primary-foreground"
+                          : "text-foreground hover:bg-muted"
                       }`}
-                      onClick={() =>
-                        handleThemeChange(value)
+                      onClick={(event) =>
+                        handleThemeChange(
+                          value,
+                          event.currentTarget,
+                        )
                       }
                       type="button"
                     >
+                      {isActive && (
+                        <motion.span
+                          aria-hidden="true"
+                          className="absolute inset-0 rounded-full bg-primary"
+                          layoutId="active-theme"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
+                        />
+                      )}
                       <Icon
                         aria-hidden="true"
-                        className="size-3 sm:size-3.5"
+                        className="relative size-3 sm:size-3.5"
                       />
                     </TooltipTrigger>
                     <TooltipContent>

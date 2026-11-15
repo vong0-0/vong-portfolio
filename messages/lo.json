@@ -12,6 +12,7 @@
   "HomePage": {
     "name": "ວົງສຸວັນ ຈັນທະສອນ",
     "Hero": {
+      "role": "Frontend Developer · ລາວ",
       "messages": [
         "ຂ້ອຍແມ່ນ Frontend Developer ຈາກລາວ, ສ້າງປະສົບການເວັບທີ່ສະອາດຕາ ແລະ ນຳໃຊ້ງານໄດ້ດີ.",
         "ນຳໃຊ້ React ແລະ Next.js — ຍັງຫາສິ່ງທ້າທາຍຢູ່ຕະຫລອດເວລາ.",

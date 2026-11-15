@@ -289,6 +289,16 @@
     );
   }
 
+  /* Dots under the Hero pointer spotlight; the mask is set from the component. */
+  .hero-dot-grid {
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--primary) 55%, transparent)
+        1px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+  }
+
   .content-max-width {
     @apply mx-auto w-full max-w-280;
   }
@@ -336,4 +346,34 @@
       color: var(--skill-color-dark);
     }
   }
+}
+
+/* Hard offset shadow that appears as a bordered card lifts toward the pointer. */
+@utility lift-card {
+  transition:
+    translate 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      translate: -4px -4px;
+      box-shadow: 6px 6px 0 0 var(--foreground);
+    }
+  }
+
+  &:active {
+    translate: 0 0;
+    box-shadow: 0 0 0 0 var(--foreground);
+  }
+}
+
+/*
+ * The theme switch runs its own circular reveal on the new page snapshot,
+ * so the default cross-fade between snapshots is turned off.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

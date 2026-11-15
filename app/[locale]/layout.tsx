@@ -14,6 +14,7 @@ import { generateLocaleMetadata } from "@/lib/metadata";
 import AppearanceLanguageControls from "@/components/layout/appearance-language-controls";
 import HeaderContainer from "@/components/layout/header-container";
 import { LocaleAnimationProvider } from "@/components/providers/locale-animation-provider";
+import ScrollProgress from "@/components/ui/scroll-progress";
 import { NextIntlClientProvider } from "next-intl";
 
 const spaceGrotesk = Space_Grotesk({
@@ -78,6 +79,7 @@ export default async function RootLayout({
               skipEntranceAnimations
             }
           >
+            <ScrollProgress />
             <HeaderContainer
               className={
                 "absolute top-0 w-full bg-transparent"

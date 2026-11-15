@@ -15,6 +15,7 @@ declare const messages: {
   "HomePage": {
     "name": "Vongsouvan Chanthasone",
     "Hero": {
+      "role": "Frontend Developer · Laos",
       "messages": [
         "I'm a Frontend Developer from Laos, building clean and functional web experiences.",
         "Building with React and Next.js — always chasing the next challenge.",

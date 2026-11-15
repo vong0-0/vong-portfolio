@@ -25,6 +25,7 @@ This file contains only durable project context and working rules. Verify the co
 - Projects code remains in `components/home/projects-section.tsx`, but Projects is intentionally not rendered and its quick link is hidden. Do not re-enable without approval.
 - `components/layout/header-container.tsx` wraps shared header children; `appearance-language-controls.tsx` handles theme and language controls.
 - `components/layout/quick-link-section.tsx` is rendered by the Hero and links to `#timeline`, `#skills`, `#about`, and `#contact`.
+- The Hero name is the page `h1`. Every section title is an `h2` rendered by `components/ui/section-heading.tsx`, which also shows the section number (`01`–`04`).
 
 ## Source of truth
 
@@ -34,6 +35,7 @@ This file contains only durable project context and working rules. Verify the co
 | Portfolio content and links | `constants/index.ts`, `messages/{en,lo}.json` |
 | Page sections | `components/home/` |
 | Header and shared UI | `components/layout/`, `components/ui/shared/` |
+| Reusable motion pieces | `components/ui/` (`split-text`, `section-heading`, `scroll-progress`, `velocity-marquee`, `tilt-card`, `scroll-reveal-word`), `lib/motion.ts` |
 | Theme, typography, and utilities | `app/globals.css`, `lib/utils.ts` |
 | Metadata and canonical URL | `lib/metadata.ts`, `lib/site-url.ts`, `app/[locale]/layout.tsx` |
 
@@ -45,6 +47,9 @@ This file contains only durable project context and working rules. Verify the co
 - Contact values and external URLs live in `constants/index.ts`; localized labels and copy feedback live in messages.
 - Use existing CSS variables/Tailwind tokens in `app/globals.css`. The design uses mostly square, bordered surfaces; avoid global rounded corners or shadows without checking the design first.
 - Prefer Tailwind transitions for simple states and Motion for entrance/scroll animations. Respect reduced-motion behavior and use `viewport={{ once: true }}` for one-time scroll effects where appropriate. Do not add another animation library.
+- Build entrance animations with `entranceProps` from `lib/motion.ts` so they are skipped after a language switch (`useSkipEntranceAnimations`).
+- `LocaleAnimationProvider` sets `MotionConfig reducedMotion="user"`, which drops Motion transforms for reduced-motion visitors. Scroll-linked `style` values are not covered by it: add `motion-reduce:transform-none!` or `motion-reduce:opacity-100!` to those elements, and gate pointer handlers with `useReducedMotion`.
+- The theme switch uses the View Transitions API for its circular reveal and falls back to an instant switch where the API is missing or reduced motion is on.
 - Use semantic links/buttons, preserve keyboard focus styles, and mark decorative icons `aria-hidden`.
 - If code and this guide disagree, trust verified code and update this guide as part of the same task.
 
@@ -53,6 +58,7 @@ This file contains only durable project context and working rules. Verify the co
 - Space Grotesk is the primary font; Noto Sans Lao supports Lao text.
 - Shared content width is 1120px (`max-w-280`); section horizontal padding is generally 24px mobile and 80px desktop.
 - Light/dark color tokens and section-specific textures are defined in `app/globals.css`; do not hardcode replacements where a token exists.
+- Bordered cards lift on hover with the `lift-card` utility (hard offset shadow, no blur). It uses the `translate` property, so it can sit on Motion elements without fighting their `transform`.
 - Keep Skills honest and aligned with the owner-approved content. Project preview placeholders and current Experience entries are intentional unless explicitly requested otherwise.
 
 ## Configuration and commands

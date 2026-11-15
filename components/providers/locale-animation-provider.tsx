@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionConfig } from "motion/react";
 import {
   createContext,
   useContext,
@@ -20,7 +21,10 @@ export function LocaleAnimationProvider({
     <SkipEntranceAnimationsContext.Provider
       value={skipEntranceAnimations}
     >
-      {children}
+      {/* Movement is dropped for visitors who ask for reduced motion. */}
+      <MotionConfig reducedMotion="user">
+        {children}
+      </MotionConfig>
     </SkipEntranceAnimationsContext.Provider>
   );
 }

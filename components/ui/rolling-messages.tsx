@@ -78,13 +78,19 @@ export default function RollingMessages({
             key={activeIndex}
             className="absolute inset-0 flex items-center justify-center"
             initial={{
-              y: shouldReduceMotion ? 0 : "100%",
+              y: shouldReduceMotion ? 0 : "60%",
               opacity: 0,
+              filter: "blur(8px)",
             }}
-            animate={{ y: 0, opacity: 1 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+            }}
             exit={{
-              y: shouldReduceMotion ? 0 : "-100%",
+              y: shouldReduceMotion ? 0 : "-60%",
               opacity: 0,
+              filter: "blur(8px)",
             }}
             transition={{
               duration: shouldReduceMotion
